@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="accent_cyan">#00D4FF</color>
+    <color name="accent_green">#00FF88</color>
+    <color name="accent_orange">#F57C00</color>
+    <color name="accent_yellow">#FFD700</color>
+    <color name="bg_dark">#0D0D0D</color>
+    <color name="black">#FF000000</color>
+    <color name="btn_stop">#8B0000</color>
+    <color name="divider">#2A2A2A</color>
+    <color name="purple_200">#FFBB86FC</color>
+    <color name="purple_500">#FF6200EE</color>
+    <color name="purple_700">#FF3700B3</color>
+    <color name="surface">#1A1A1A</color>
+    <color name="teal_200">#FF03DAC5</color>
+    <color name="teal_700">#FF018786</color>
+    <color name="text_dim">#666666</color>
+    <color name="text_light">#E0E0E0</color>
+    <color name="white">#FFFFFFFF</color>
+    <string name="app_name">Share Pannu</string>
+    <style name="Theme.LocalShare" parent="Theme.MaterialComponents.DayNight.NoActionBar">
+        <item name="colorPrimary">@color/accent_green</item>
+        <item name="colorPrimaryVariant">@color/surface</item>
+        <item name="colorOnPrimary">@color/bg_dark</item>
+        <item name="colorSecondary">@color/accent_cyan</item>
+        <item name="colorOnSecondary">@color/bg_dark</item>
+        <item name="android:colorBackground">@color/bg_dark</item>
+        <item name="colorSurface">@color/surface</item>
+        <item name="colorOnSurface">@color/text_light</item>
+        <item name="android:statusBarColor">@color/bg_dark</item>
+        <item name="android:navigationBarColor">@color/bg_dark</item>
+        <item name="android:windowLightStatusBar">false</item>
+    </style>
+</resources>

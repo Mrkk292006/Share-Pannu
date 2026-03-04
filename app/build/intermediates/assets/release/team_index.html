@@ -1,0 +1,853 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Team Share — LAN Workspace</title>
+    <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@300;400;600;700&display=swap"
+        rel="stylesheet" />
+    <style>
+        :root {
+            --bg: #0d0d12;
+            --surface: #13131a;
+            --card: #1a1a24;
+            --border: #2a2a3a;
+            --cyan: #00d4ff;
+            --cyan-dim: #007a99;
+            --green: #00ff88;
+            --yellow: #ffd700;
+            --red: #ff4444;
+            --purple: #9b6dff;
+            --dim: #555566;
+            --text: #ccccdd;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            background: var(--bg);
+            color: var(--text);
+            font-family: 'JetBrains Mono', monospace;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        /* ─── HEADER ─── */
+        header {
+            width: 100%;
+            padding: 18px 32px;
+            border-bottom: 1px solid var(--border);
+            display: flex;
+            align-items: center;
+            gap: 16px;
+            background: linear-gradient(90deg, #0d0d12 50%, #0d1020 100%);
+            position: relative;
+            overflow: hidden;
+        }
+
+        header::after {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background: repeating-linear-gradient(0deg, transparent, transparent 3px,
+                    rgba(0, 212, 255, 0.012) 3px, rgba(0, 212, 255, 0.012) 4px);
+            pointer-events: none;
+            animation: scanline 8s linear infinite;
+        }
+
+        @keyframes scanline {
+            from {
+                background-position: 0 0
+            }
+
+            to {
+                background-position: 0 100px
+            }
+        }
+
+        .logo {
+            color: var(--cyan);
+            font-size: 1.4rem;
+            font-weight: 700;
+            letter-spacing: 3px;
+        }
+
+        .logo-sub {
+            color: var(--dim);
+            font-size: 0.65rem;
+            letter-spacing: 1px;
+            margin-top: 2px;
+        }
+
+        .logo-badge {
+            background: linear-gradient(135deg, #1a0030, #000d1a);
+            border: 1px solid var(--purple);
+            color: var(--purple);
+            font-size: 0.6rem;
+            letter-spacing: 2px;
+            padding: 3px 8px;
+            border-radius: 3px;
+        }
+
+        .status-dot {
+            width: 8px;
+            height: 8px;
+            border-radius: 50%;
+            background: var(--cyan);
+            box-shadow: 0 0 10px var(--cyan);
+            animation: pulse 2s ease-in-out infinite;
+            margin-left: auto;
+        }
+
+        @keyframes pulse {
+
+            0%,
+            100% {
+                opacity: 1
+            }
+
+            50% {
+                opacity: 0.3
+            }
+        }
+
+        /* ─── MAIN ─── */
+        main {
+            width: 100%;
+            max-width: 900px;
+            padding: 28px 16px;
+            display: flex;
+            flex-direction: column;
+            gap: 18px;
+        }
+
+        /* ─── CARD ─── */
+        .card {
+            background: var(--card);
+            border: 1px solid var(--border);
+            border-radius: 8px;
+            padding: 22px;
+            transition: border-color 0.2s;
+        }
+
+        .card:hover {
+            border-color: #3a3a50;
+        }
+
+        .card-title {
+            color: var(--dim);
+            font-size: 0.62rem;
+            letter-spacing: 3px;
+            text-transform: uppercase;
+            margin-bottom: 14px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .card-title::after {
+            content: '';
+            flex: 1;
+            height: 1px;
+            background: var(--border);
+        }
+
+        .card-title-row {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 14px;
+        }
+
+        .card-title-row .card-title {
+            margin-bottom: 0;
+            flex: 1;
+        }
+
+        /* ─── AUTH ─── */
+        #auth-section {
+            border-color: var(--cyan);
+        }
+
+        .pin-input-row {
+            display: flex;
+            gap: 12px;
+            align-items: center;
+            flex-wrap: wrap;
+        }
+
+        input[type="password"] {
+            background: var(--surface);
+            border: 1px solid var(--border);
+            color: var(--cyan);
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 1.4rem;
+            letter-spacing: 8px;
+            padding: 10px 16px;
+            border-radius: 4px;
+            outline: none;
+            width: 180px;
+            transition: border-color 0.2s;
+        }
+
+        input:focus {
+            border-color: var(--cyan);
+            box-shadow: 0 0 0 1px var(--cyan);
+        }
+
+        #auth-msg {
+            font-size: 0.8rem;
+            margin-top: 10px;
+            min-height: 1.2em;
+        }
+
+        .auth-ok {
+            color: var(--green);
+        }
+
+        .auth-err {
+            color: var(--red);
+        }
+
+        /* ─── BUTTONS ─── */
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            padding: 10px 20px;
+            border-radius: 4px;
+            border: none;
+            cursor: pointer;
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 0.8rem;
+            font-weight: 600;
+            letter-spacing: 1px;
+            transition: all 0.15s;
+        }
+
+        .btn-cyan {
+            background: var(--cyan);
+            color: #000;
+        }
+
+        .btn-cyan:hover {
+            background: #00b8e0;
+            transform: translateY(-1px);
+        }
+
+        .btn-outline-cyan {
+            background: transparent;
+            border: 1px solid var(--cyan);
+            color: var(--cyan);
+        }
+
+        .btn-outline-cyan:hover {
+            background: rgba(0, 212, 255, 0.08);
+        }
+
+        .btn:disabled {
+            opacity: 0.4;
+            cursor: not-allowed;
+            transform: none;
+        }
+
+        /* ─── UPLOAD ─── */
+        #drop-zone {
+            border: 2px dashed var(--cyan-dim);
+            border-radius: 8px;
+            padding: 44px 24px;
+            text-align: center;
+            transition: all 0.2s;
+            cursor: pointer;
+        }
+
+        #drop-zone.drag-over {
+            border-color: var(--cyan);
+            background: rgba(0, 212, 255, 0.04);
+            box-shadow: inset 0 0 24px rgba(0, 212, 255, 0.06);
+        }
+
+        #drop-zone .drop-icon {
+            font-size: 2rem;
+            margin-bottom: 12px;
+            color: var(--dim);
+        }
+
+        #drop-zone .drop-text {
+            color: var(--dim);
+            font-size: 0.85rem;
+        }
+
+        #drop-zone .drop-hint {
+            color: var(--dim);
+            font-size: 0.68rem;
+            margin-top: 6px;
+        }
+
+        #file-input {
+            display: none;
+        }
+
+        /* ─── PROGRESS ─── */
+        #progress-area {
+            display: none;
+            margin-top: 16px;
+        }
+
+        #progress-label {
+            display: flex;
+            justify-content: space-between;
+            font-size: 0.75rem;
+            color: var(--dim);
+            margin-bottom: 6px;
+        }
+
+        #speed-label {
+            color: var(--cyan);
+        }
+
+        .progress-bar-bg {
+            width: 100%;
+            height: 6px;
+            background: var(--surface);
+            border-radius: 3px;
+            overflow: hidden;
+        }
+
+        .progress-bar-fill {
+            height: 100%;
+            width: 0%;
+            background: linear-gradient(90deg, var(--cyan), var(--purple));
+            border-radius: 3px;
+            transition: width 0.1s linear;
+            box-shadow: 0 0 6px var(--cyan);
+        }
+
+        #upload-result {
+            font-size: 0.8rem;
+            margin-top: 10px;
+            min-height: 1.2em;
+        }
+
+        /* ─── FILE LIST ─── */
+        #files-list {
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+            margin-top: 4px;
+        }
+
+        .file-row {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            background: var(--surface);
+            border: 1px solid var(--border);
+            border-radius: 6px;
+            padding: 12px 16px;
+            transition: border-color 0.15s;
+        }
+
+        .file-row:hover {
+            border-color: var(--cyan-dim);
+        }
+
+        .file-icon {
+            color: var(--dim);
+            font-size: 1rem;
+        }
+
+        .file-info {
+            flex: 1;
+            min-width: 0;
+        }
+
+        .file-name {
+            color: var(--text);
+            font-size: 0.85rem;
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+        }
+
+        .file-meta {
+            color: var(--dim);
+            font-size: 0.63rem;
+            margin-top: 2px;
+        }
+
+        .dl-btn {
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 0.7rem;
+            color: var(--cyan);
+            text-decoration: none;
+            border: 1px solid var(--cyan-dim);
+            padding: 5px 10px;
+            border-radius: 3px;
+            white-space: nowrap;
+            transition: all 0.15s;
+        }
+
+        .dl-btn:hover {
+            background: rgba(0, 212, 255, 0.1);
+            border-color: var(--cyan);
+        }
+
+        .files-empty {
+            color: var(--dim);
+            font-size: 0.8rem;
+            text-align: center;
+            padding: 20px;
+        }
+
+        /* ─── STORAGE BAR ─── */
+        .storage-row {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            margin-bottom: 12px;
+        }
+
+        .storage-label {
+            color: var(--dim);
+            font-size: 0.65rem;
+            white-space: nowrap;
+        }
+
+        .storage-bar-bg {
+            flex: 1;
+            height: 4px;
+            background: var(--surface);
+            border-radius: 2px;
+            overflow: hidden;
+        }
+
+        .storage-bar-fill {
+            height: 100%;
+            width: 0%;
+            background: linear-gradient(90deg, var(--cyan), var(--purple));
+            border-radius: 2px;
+            transition: width 0.3s;
+        }
+
+        .storage-used {
+            color: var(--cyan);
+            font-size: 0.65rem;
+            white-space: nowrap;
+        }
+
+        /* ─── LOG ─── */
+        #log-box {
+            background: var(--surface);
+            border: 1px solid var(--border);
+            border-radius: 6px;
+            padding: 12px 14px;
+            height: 240px;
+            overflow-y: auto;
+            font-size: 0.72rem;
+            line-height: 1.6;
+        }
+
+        .log-ok {
+            color: var(--green);
+        }
+
+        .log-tx {
+            color: var(--cyan);
+        }
+
+        .log-err {
+            color: var(--red);
+        }
+
+        .log-info {
+            color: var(--dim);
+        }
+
+        #log-box::-webkit-scrollbar {
+            width: 4px;
+        }
+
+        #log-box::-webkit-scrollbar-thumb {
+            background: var(--border);
+            border-radius: 2px;
+        }
+
+        /* ─── LOCK / UNLOCK ─── */
+        #upload-section,
+        #files-section,
+        #log-section {
+            opacity: 0.3;
+            pointer-events: none;
+        }
+
+        #upload-section.unlocked,
+        #files-section.unlocked,
+        #log-section.unlocked {
+            opacity: 1;
+            pointer-events: all;
+        }
+
+        /* ─── FOOTER ─── */
+        footer {
+            color: var(--dim);
+            font-size: 0.62rem;
+            text-align: center;
+            padding: 20px;
+            border-top: 1px solid var(--border);
+            width: 100%;
+        }
+
+        .hidden {
+            display: none !important;
+        }
+    </style>
+</head>
+
+<body>
+
+    <!-- ─── HEADER ─── -->
+    <header>
+        <div>
+            <div class="logo">TEAM_SHARE</div>
+            <div class="logo-sub">// Temporary LAN Shared Workspace</div>
+        </div>
+        <div class="logo-badge">⬡ TEAM MODE</div>
+        <div class="status-dot" id="status-dot"></div>
+    </header>
+
+    <main>
+
+        <!-- ── AUTH ── -->
+        <div class="card" id="auth-section">
+            <div class="card-title">[ 01 ] Authentication</div>
+            <p style="color:var(--dim);font-size:0.78rem;margin-bottom:14px;">
+                Enter the PIN shown on the phone to join the team workspace.
+            </p>
+            <div class="pin-input-row">
+                <input type="password" id="pin-input" maxlength="6" placeholder="——————" autocomplete="off" />
+                <button class="btn btn-cyan" id="auth-btn" onclick="authenticate()">JOIN →</button>
+            </div>
+            <div id="auth-msg"></div>
+        </div>
+
+        <!-- ── UPLOAD ── -->
+        <div class="card" id="upload-section">
+            <div class="card-title">[ 02 ] Upload to Workspace &nbsp;<span
+                    style="color:var(--dim);font-size:0.6rem;letter-spacing:1px;">VISIBLE TO ALL DEVICES</span></div>
+            <div id="drop-zone" ondragover="dragOver(event)" ondragleave="dragLeave(event)" ondrop="dropFile(event)"
+                onclick="document.getElementById('file-input').click()">
+                <div class="drop-icon">📁</div>
+                <div class="drop-text">Drag &amp; drop files here</div>
+                <div class="drop-hint">or click to browse — file appears for all connected devices</div>
+            </div>
+            <input type="file" id="file-input" multiple onchange="filesSelected(this.files)" />
+            <div id="progress-area">
+                <div id="progress-label">
+                    <span id="progress-filename">Uploading…</span>
+                    <span id="speed-label">0 MB/s</span>
+                </div>
+                <div class="progress-bar-bg">
+                    <div class="progress-bar-fill" id="progress-fill"></div>
+                </div>
+                <div style="text-align:right;font-size:0.7rem;color:var(--dim);margin-top:4px;"><span
+                        id="progress-pct">0%</span></div>
+            </div>
+            <div id="upload-result"></div>
+        </div>
+
+        <!-- ── SHARED FILES ── -->
+        <div class="card" id="files-section">
+            <div class="card-title-row">
+                <div class="card-title">[ 03 ] Workspace Files</div>
+                <button class="btn btn-outline-cyan" style="padding:4px 10px;font-size:0.65rem;" onclick="loadFiles()">↻
+                    Refresh</button>
+            </div>
+            <!-- Storage usage bar -->
+            <div class="storage-row">
+                <span class="storage-label">SESSION STORAGE</span>
+                <div class="storage-bar-bg">
+                    <div class="storage-bar-fill" id="storage-fill"></div>
+                </div>
+                <span class="storage-used" id="storage-used-label">0 B / 10 GB</span>
+            </div>
+            <div id="files-list">
+                <div class="files-empty">No files yet — upload something above.</div>
+            </div>
+        </div>
+
+        <!-- ── LOG ── -->
+        <div class="card" id="log-section">
+            <div class="card-title-row">
+                <div class="card-title">[ 04 ] Session Log</div>
+                <button class="btn btn-outline-cyan"
+                    style="padding:4px 10px;font-size:0.65rem;color:var(--red);border-color:var(--red);"
+                    onclick="clearLog()">✕ Clear</button>
+            </div>
+            <div id="log-box"></div>
+        </div>
+
+    </main>
+
+    <footer>Team Share · Temporary workspace · Files deleted on session end · Token expires in 15 min · Max 10 GB
+    </footer>
+
+    <script>
+        let AUTH_TOKEN = null;
+        const MAX_BYTES = 10 * 1024 * 1024 * 1024; // 10 GB
+
+        // ── Helpers ──
+        function log(msg, cls = 'log-info') {
+            const box = document.getElementById('log-box');
+            const line = document.createElement('div');
+            line.className = cls;
+            const ts = new Date().toLocaleTimeString('en-GB', { hour12: false });
+            line.textContent = `[${ts}] ${msg}`;
+            box.appendChild(line);
+            box.scrollTop = box.scrollHeight;
+        }
+
+        function setMsg(id, text, cls) {
+            const el = document.getElementById(id);
+            el.textContent = text;
+            el.className = cls;
+        }
+
+        function fmtSize(bytes) {
+            if (bytes < 1024) return bytes + ' B';
+            if (bytes < 1048576) return (bytes / 1024).toFixed(1) + ' KB';
+            if (bytes < 1073741824) return (bytes / 1048576).toFixed(1) + ' MB';
+            return (bytes / 1073741824).toFixed(2) + ' GB';
+        }
+
+        function unlockUI() {
+            ['upload-section', 'files-section', 'log-section'].forEach(id => {
+                document.getElementById(id).classList.add('unlocked');
+            });
+            document.getElementById('status-dot').style.background = 'var(--cyan)';
+            document.getElementById('status-dot').style.boxShadow = '0 0 10px var(--cyan)';
+            log('[✓] Joined team workspace — ready', 'log-ok');
+            loadFiles();
+            // Auto-refresh every 3 s
+            if (window._refreshTimer) clearInterval(window._refreshTimer);
+            window._refreshTimer = setInterval(() => { if (AUTH_TOKEN) loadFiles(); else clearInterval(window._refreshTimer); }, 3000);
+            // Token expiry warning
+            setTimeout(() => log('[!] Token expires in 1 minute. Re-enter PIN.', 'log-err'), 14 * 60 * 1000);
+        }
+
+        // ── Auth ──
+        async function authenticate() {
+            const pin = document.getElementById('pin-input').value.trim();
+            if (pin.length !== 6) { setMsg('auth-msg', '[✗] PIN must be 6 digits', 'auth-err'); return; }
+            document.getElementById('auth-btn').disabled = true;
+            setMsg('auth-msg', 'Joining…', 'log-info');
+            try {
+                const resp = await fetch('/ts-auth', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({ pin })
+                });
+                const data = await resp.json();
+                if (resp.ok && data.token) {
+                    AUTH_TOKEN = data.token;
+                    sessionStorage.setItem('team_auth_token', AUTH_TOKEN);
+                    setMsg('auth-msg', '[✓] Access granted', 'auth-ok');
+                    unlockUI();
+                } else if (resp.status === 429) {
+                    const retryAfter = data.retryAfter || 60;
+                    setMsg('auth-msg', `[⛔] Too many attempts. Locked out for ${retryAfter}s.`, 'auth-err');
+                    startLockoutCountdown(retryAfter);
+                } else {
+                    const rem = data.attemptsRemaining;
+                    const msg = rem !== undefined
+                        ? `[✗] Wrong PIN — ${rem} attempt${rem !== 1 ? 's' : ''} remaining`
+                        : '[✗] ' + (data.error || 'Wrong PIN');
+                    setMsg('auth-msg', msg, 'auth-err');
+                    document.getElementById('auth-btn').disabled = false;
+                }
+            } catch (e) {
+                setMsg('auth-msg', '[✗] Connection error: ' + e.message, 'auth-err');
+                document.getElementById('auth-btn').disabled = false;
+            }
+        }
+
+        function startLockoutCountdown(seconds) {
+            let remaining = seconds;
+            const btn = document.getElementById('auth-btn');
+            btn.disabled = true;
+            const interval = setInterval(() => {
+                remaining--;
+                if (remaining <= 0) {
+                    clearInterval(interval);
+                    btn.disabled = false;
+                    setMsg('auth-msg', '[!] Lockout expired. Enter PIN to try again.', 'log-info');
+                } else {
+                    setMsg('auth-msg', `[⛔] Locked out — ${remaining}s remaining`, 'auth-err');
+                }
+            }, 1000);
+        }
+
+
+        // Session restore on reload
+        window.addEventListener('DOMContentLoaded', async () => {
+            const saved = sessionStorage.getItem('team_auth_token');
+            if (!saved) return;
+            setMsg('auth-msg', '[↻] Checking saved session…', 'log-info');
+            try {
+                const resp = await fetch('/ts-files', { headers: { 'X-Auth-Token': saved } });
+                if (resp.ok) {
+                    AUTH_TOKEN = saved;
+                    setMsg('auth-msg', '[✓] Session restored', 'auth-ok');
+                    unlockUI();
+                } else {
+                    sessionStorage.removeItem('team_auth_token');
+                    setMsg('auth-msg', '[!] Session expired. Re-enter PIN.', 'auth-err');
+                    document.getElementById('auth-btn').disabled = false;
+                }
+            } catch (e) {
+                setMsg('auth-msg', '[✗] ' + e.message, 'auth-err');
+                document.getElementById('auth-btn').disabled = false;
+            }
+        });
+
+        document.getElementById('pin-input').addEventListener('keydown', e => { if (e.key === 'Enter') authenticate(); });
+
+        // ── Load workspace files ──
+        async function loadFiles() {
+            if (!AUTH_TOKEN) return;
+            try {
+                const resp = await fetch('/ts-files', { headers: { 'X-Auth-Token': AUTH_TOKEN } });
+                if (resp.status === 401) { AUTH_TOKEN = null; sessionStorage.removeItem('team_auth_token'); return; }
+                const files = await resp.json();
+                renderFiles(files);
+            } catch (_) { }
+        }
+
+        function renderFiles(files) {
+            const list = document.getElementById('files-list');
+            // Update storage bar
+            const totalBytes = files.reduce((s, f) => s + f.size, 0);
+            const pct = Math.min((totalBytes / MAX_BYTES) * 100, 100);
+            document.getElementById('storage-fill').style.width = pct + '%';
+            document.getElementById('storage-used-label').textContent = fmtSize(totalBytes) + ' / 10 GB';
+
+            if (files.length === 0) {
+                list.innerHTML = '<div class="files-empty">No files yet — upload something above.</div>';
+                return;
+            }
+            list.innerHTML = files.map(f => `
+        <div class="file-row">
+          <span class="file-icon">📄</span>
+          <div class="file-info">
+            <div class="file-name">${escHtml(f.name)}</div>
+            <div class="file-meta">${fmtSize(f.size)}</div>
+          </div>
+          <a class="dl-btn" href="/ts-download/${encodeURIComponent(f.id)}?token=${encodeURIComponent(AUTH_TOKEN)}"
+             download="${escHtml(f.name)}">⬇ Download</a>
+        </div>`).join('');
+        }
+
+        // ── Drag & Drop ──
+        function dragOver(e) { e.preventDefault(); document.getElementById('drop-zone').classList.add('drag-over'); }
+        function dragLeave() { document.getElementById('drop-zone').classList.remove('drag-over'); }
+        function dropFile(e) { e.preventDefault(); dragLeave(); uploadFiles(e.dataTransfer.files); }
+        function filesSelected(files) { uploadFiles(files); }
+
+        function uploadFiles(files) {
+            if (!files || !files.length) return;
+            let chain = Promise.resolve();
+            Array.from(files).forEach(f => { chain = chain.then(() => uploadSingle(f)); });
+        }
+
+        function uploadSingle(file) {
+            return new Promise(resolve => {
+                const progArea = document.getElementById('progress-area');
+                const progFill = document.getElementById('progress-fill');
+                const progPct = document.getElementById('progress-pct');
+                const speedEl = document.getElementById('speed-label');
+                const nameEl = document.getElementById('progress-filename');
+                const resultEl = document.getElementById('upload-result');
+
+                progArea.style.display = 'block';
+                progFill.style.width = '0%';
+                progPct.textContent = '0%';
+                speedEl.textContent = '0 MB/s';
+                nameEl.textContent = file.name;
+                resultEl.textContent = '';
+
+                log(`[⇄] Uploading to workspace: ${file.name} (${fmtSize(file.size)})`, 'log-tx');
+
+                const xhr = new XMLHttpRequest();
+                let lastLoaded = 0, lastTime = Date.now();
+
+                xhr.upload.addEventListener('progress', e => {
+                    if (!e.lengthComputable) return;
+                    const pct = Math.round(e.loaded / e.total * 100);
+                    progFill.style.width = pct + '%';
+                    progPct.textContent = pct + '%';
+                    const now = Date.now(), dt = (now - lastTime) / 1000;
+                    if (dt > 0.3) {
+                        speedEl.textContent = ((e.loaded - lastLoaded) / dt / 1048576).toFixed(1) + ' MB/s';
+                        lastLoaded = e.loaded; lastTime = now;
+                    }
+                });
+
+                xhr.addEventListener('load', () => {
+                    progArea.style.display = 'none';
+                    if (xhr.status === 200) {
+                        log(`[✓] Uploaded: ${file.name} — now visible to all devices`, 'log-ok');
+                        resultEl.style.color = 'var(--green)';
+                        resultEl.textContent = `[✓] ${file.name} uploaded`;
+                        loadFiles();
+                    } else if (xhr.status === 507) {
+                        const err = JSON.parse(xhr.responseText || '{}');
+                        log(`[✗] Session full — ${err.error || 'storage limit reached'}`, 'log-err');
+                        resultEl.style.color = 'var(--red)';
+                        resultEl.textContent = `[✗] Session storage full`;
+                    } else {
+                        log(`[✗] Upload failed (${xhr.status})`, 'log-err');
+                        resultEl.style.color = 'var(--red)';
+                        resultEl.textContent = `[✗] Upload failed`;
+                    }
+                    resolve();
+                });
+
+                xhr.addEventListener('error', () => {
+                    progArea.style.display = 'none';
+                    log('[✗] Network error during upload', 'log-err');
+                    resolve();
+                });
+
+                // Pause file-list polling during upload to avoid bandwidth contention
+                if (window._refreshTimer) { clearInterval(window._refreshTimer); window._refreshTimer = null; }
+                xhr.open('POST', '/ts-upload');
+                xhr.setRequestHeader('X-Auth-Token', AUTH_TOKEN);
+                xhr.setRequestHeader('X-Filename', encodeURIComponent(file.name));
+                xhr.setRequestHeader('Content-Length', file.size);
+                xhr.addEventListener('loadend', () => {
+                    // Resume 3-second polling after upload completes
+                    if (AUTH_TOKEN && !window._refreshTimer) {
+                        window._refreshTimer = setInterval(() => { if (AUTH_TOKEN) loadFiles(); else clearInterval(window._refreshTimer); }, 3000);
+                    }
+                });
+                xhr.send(file);
+            });
+        }
+
+        function clearLog() { document.getElementById('log-box').innerHTML = ''; }
+
+        function escHtml(s) {
+            return s.replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;').replace(/"/g, '&quot;');
+        }
+    </script>
+
+</body>
+
+</html>

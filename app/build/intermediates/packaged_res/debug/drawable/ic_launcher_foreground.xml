@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="utf-8"?>
+<vector xmlns:android="http://schemas.android.com/apk/res/android"
+    android:width="108dp"
+    android:height="108dp"
+    android:viewportWidth="108"
+    android:viewportHeight="108">
+
+    <!-- WiFi arc 1 — smallest (innermost) -->
+    <path
+        android:strokeWidth="5.5"
+        android:strokeColor="#44FF66"
+        android:strokeLineCap="round"
+        android:fillColor="#00000000"
+        android:pathData="M42,58 C42,50 47,44 54,44 C61,44 66,50 66,58"/>
+
+    <!-- WiFi arc 2 -->
+    <path
+        android:strokeWidth="5.5"
+        android:strokeColor="#44FF66"
+        android:strokeLineCap="round"
+        android:fillColor="#00000000"
+        android:pathData="M33,58 C33,40 42,30 54,30 C66,30 75,40 75,58"/>
+
+    <!-- WiFi arc 3 -->
+    <path
+        android:strokeWidth="5.5"
+        android:strokeColor="#44FF66"
+        android:strokeLineCap="round"
+        android:fillColor="#00000000"
+        android:pathData="M24,58 C24,30 37,16 54,16 C71,16 84,30 84,58"/>
+
+    <!-- WiFi arc 4 — largest (outermost) -->
+    <path
+        android:strokeWidth="5.5"
+        android:strokeColor="#44FF66"
+        android:strokeLineCap="round"
+        android:fillColor="#00000000"
+        android:pathData="M15,58 C15,20 32,4 54,4 C76,4 93,20 93,58"/>
+
+    <!-- Center dot -->
+    <path
+        android:fillColor="#44FF66"
+        android:pathData="M54,66 m-6,0 a6,6 0 1,0 12,0 a6,6 0 1,0 -12,0"/>
+
+</vector>
+

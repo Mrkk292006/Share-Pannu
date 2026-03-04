@@ -1,0 +1,86 @@
+[
+    {
+        "merged": "com.localshare.app-merged_res-35:/layout_activity_phone_to_phone.xml.flat",
+        "source": "com.localshare.app-main-36:/layout/activity_phone_to_phone.xml"
+    },
+    {
+        "merged": "com.localshare.app-merged_res-35:/mipmap-xxxhdpi_ic_launcher_round.png.flat",
+        "source": "com.localshare.app-main-36:/mipmap-xxxhdpi/ic_launcher_round.png"
+    },
+    {
+        "merged": "com.localshare.app-merged_res-35:/mipmap-mdpi_ic_launcher_round.png.flat",
+        "source": "com.localshare.app-main-36:/mipmap-mdpi/ic_launcher_round.png"
+    },
+    {
+        "merged": "com.localshare.app-merged_res-35:/layout_activity_p2p_sender.xml.flat",
+        "source": "com.localshare.app-main-36:/layout/activity_p2p_sender.xml"
+    },
+    {
+        "merged": "com.localshare.app-merged_res-35:/xml_file_paths.xml.flat",
+        "source": "com.localshare.app-main-36:/xml/file_paths.xml"
+    },
+    {
+        "merged": "com.localshare.app-merged_res-35:/drawable_ic_launcher_foreground.xml.flat",
+        "source": "com.localshare.app-main-36:/drawable/ic_launcher_foreground.xml"
+    },
+    {
+        "merged": "com.localshare.app-merged_res-35:/layout_item_received_file.xml.flat",
+        "source": "com.localshare.app-main-36:/layout/item_received_file.xml"
+    },
+    {
+        "merged": "com.localshare.app-merged_res-35:/mipmap-xxxhdpi_ic_launcher.png.flat",
+        "source": "com.localshare.app-main-36:/mipmap-xxxhdpi/ic_launcher.png"
+    },
+    {
+        "merged": "com.localshare.app-merged_res-35:/layout_activity_main.xml.flat",
+        "source": "com.localshare.app-main-36:/layout/activity_main.xml"
+    },
+    {
+        "merged": "com.localshare.app-merged_res-35:/mipmap-xhdpi_ic_launcher_round.png.flat",
+        "source": "com.localshare.app-main-36:/mipmap-xhdpi/ic_launcher_round.png"
+    },
+    {
+        "merged": "com.localshare.app-merged_res-35:/layout_activity_p2p_receiver.xml.flat",
+        "source": "com.localshare.app-main-36:/layout/activity_p2p_receiver.xml"
+    },
+    {
+        "merged": "com.localshare.app-merged_res-35:/mipmap-xhdpi_ic_launcher.png.flat",
+        "source": "com.localshare.app-main-36:/mipmap-xhdpi/ic_launcher.png"
+    },
+    {
+        "merged": "com.localshare.app-merged_res-35:/mipmap-hdpi_ic_launcher_round.png.flat",
+        "source": "com.localshare.app-main-36:/mipmap-hdpi/ic_launcher_round.png"
+    },
+    {
+        "merged": "com.localshare.app-merged_res-35:/layout_activity_sharing.xml.flat",
+        "source": "com.localshare.app-main-36:/layout/activity_sharing.xml"
+    },
+    {
+        "merged": "com.localshare.app-merged_res-35:/mipmap-xxhdpi_ic_launcher_round.png.flat",
+        "source": "com.localshare.app-main-36:/mipmap-xxhdpi/ic_launcher_round.png"
+    },
+    {
+        "merged": "com.localshare.app-merged_res-35:/mipmap-hdpi_ic_launcher.png.flat",
+        "source": "com.localshare.app-main-36:/mipmap-hdpi/ic_launcher.png"
+    },
+    {
+        "merged": "com.localshare.app-merged_res-35:/layout_item_team_file.xml.flat",
+        "source": "com.localshare.app-main-36:/layout/item_team_file.xml"
+    },
+    {
+        "merged": "com.localshare.app-merged_res-35:/layout_activity_team_sharing.xml.flat",
+        "source": "com.localshare.app-main-36:/layout/activity_team_sharing.xml"
+    },
+    {
+        "merged": "com.localshare.app-merged_res-35:/mipmap-mdpi_ic_launcher.png.flat",
+        "source": "com.localshare.app-main-36:/mipmap-mdpi/ic_launcher.png"
+    },
+    {
+        "merged": "com.localshare.app-merged_res-35:/mipmap-xxhdpi_ic_launcher.png.flat",
+        "source": "com.localshare.app-main-36:/mipmap-xxhdpi/ic_launcher.png"
+    },
+    {
+        "merged": "com.localshare.app-merged_res-35:/drawable_card_bg.xml.flat",
+        "source": "com.localshare.app-main-36:/drawable/card_bg.xml"
+    }
+]

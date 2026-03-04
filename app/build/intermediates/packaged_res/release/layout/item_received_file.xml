@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="horizontal"
+    android:gravity="center_vertical"
+    android:padding="10dp"
+    android:background="@drawable/card_bg"
+    android:layout_marginBottom="6dp">
+
+    <!-- File icon -->
+    <TextView
+        android:layout_width="28dp"
+        android:layout_height="28dp"
+        android:text="💾"
+        android:textSize="16sp"
+        android:gravity="center"
+        android:layout_marginEnd="10dp" />
+
+    <!-- Name + meta -->
+    <LinearLayout
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_weight="1"
+        android:orientation="vertical">
+
+        <TextView
+            android:id="@+id/tvReceivedName"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="filename.ext"
+            android:textColor="#DDDDDD"
+            android:textSize="13sp"
+            android:fontFamily="monospace"
+            android:ellipsize="end"
+            android:singleLine="true" />
+
+        <TextView
+            android:id="@+id/tvReceivedMeta"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="4.2 MB  ·  Feb 28, 11:02"
+            android:textColor="#666666"
+            android:textSize="10sp"
+            android:fontFamily="monospace"
+            android:layout_marginTop="2dp" />
+
+    </LinearLayout>
+
+    <!-- Share button -->
+    <ImageButton
+        android:id="@+id/btnReceivedShare"
+        android:layout_width="36dp"
+        android:layout_height="36dp"
+        android:background="?attr/selectableItemBackgroundBorderless"
+        android:src="@android:drawable/ic_menu_share"
+        android:tint="#00D4FF"
+        android:contentDescription="Share"
+        android:layout_marginStart="4dp" />
+
+    <!-- Delete button -->
+    <ImageButton
+        android:id="@+id/btnReceivedDelete"
+        android:layout_width="36dp"
+        android:layout_height="36dp"
+        android:background="?attr/selectableItemBackgroundBorderless"
+        android:src="@android:drawable/ic_menu_delete"
+        android:tint="#FF4444"
+        android:contentDescription="Delete"
+        android:layout_marginStart="2dp" />
+
+</LinearLayout>

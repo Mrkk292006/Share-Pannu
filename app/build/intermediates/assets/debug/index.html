@@ -1,0 +1,987 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>LocalShare — LAN File Transfer</title>
+  <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@300;400;600;700&display=swap"
+    rel="stylesheet" />
+  <style>
+    :root {
+      --bg: #0d0d0d;
+      --surface: #141414;
+      --card: #1a1a1a;
+      --border: #2a2a2a;
+      --green: #00ff88;
+      --cyan: #00d4ff;
+      --yellow: #ffd700;
+      --red: #ff4444;
+      --dim: #555;
+      --text: #ddd;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      background: var(--bg);
+      color: var(--text);
+      font-family: 'JetBrains Mono', monospace;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+
+    /* ─── HEADER ─── */
+    header {
+      width: 100%;
+      padding: 20px 32px;
+      border-bottom: 1px solid var(--border);
+      display: flex;
+      align-items: center;
+      gap: 16px;
+      position: relative;
+      overflow: hidden;
+      background: linear-gradient(90deg, #0d0d0d 60%, #0d1a10 100%);
+    }
+
+    header::after {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: repeating-linear-gradient(0deg, transparent, transparent 3px,
+          rgba(0, 255, 136, 0.015) 3px, rgba(0, 255, 136, 0.015) 4px);
+      pointer-events: none;
+      animation: scanline 8s linear infinite;
+    }
+
+    @keyframes scanline {
+      from {
+        background-position: 0 0;
+      }
+
+      to {
+        background-position: 0 100px;
+      }
+    }
+
+    .logo {
+      color: var(--green);
+      font-size: 1.5rem;
+      font-weight: 700;
+      letter-spacing: 3px;
+    }
+
+    .logo-sub {
+      color: var(--dim);
+      font-size: 0.7rem;
+      letter-spacing: 1px;
+      margin-top: 2px;
+    }
+
+    .status-dot {
+      width: 8px;
+      height: 8px;
+      border-radius: 50%;
+      background: var(--green);
+      box-shadow: 0 0 8px var(--green);
+      animation: pulse 2s ease-in-out infinite;
+      margin-left: auto;
+    }
+
+    @keyframes pulse {
+
+      0%,
+      100% {
+        opacity: 1;
+      }
+
+      50% {
+        opacity: 0.3;
+      }
+    }
+
+    /* ─── MAIN ─── */
+    main {
+      width: 100%;
+      max-width: 900px;
+      padding: 32px 16px;
+      display: flex;
+      flex-direction: column;
+      gap: 20px;
+    }
+
+    /* ─── CARD ─── */
+    .card {
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      padding: 24px;
+      transition: border-color 0.2s;
+    }
+
+    .card:hover {
+      border-color: #3a3a3a;
+    }
+
+    .card-title {
+      color: var(--dim);
+      font-size: 0.65rem;
+      letter-spacing: 3px;
+      text-transform: uppercase;
+      margin-bottom: 16px;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .card-title::after {
+      content: '';
+      flex: 1;
+      height: 1px;
+      background: var(--border);
+    }
+
+    /* ─── AUTH ─── */
+    #auth-section {
+      border-color: var(--green);
+    }
+
+    .pin-input-row {
+      display: flex;
+      gap: 12px;
+      align-items: center;
+      flex-wrap: wrap;
+    }
+
+    input[type="text"],
+    input[type="password"] {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      color: var(--green);
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 1.4rem;
+      letter-spacing: 8px;
+      padding: 10px 16px;
+      border-radius: 4px;
+      outline: none;
+      width: 180px;
+      transition: border-color 0.2s;
+    }
+
+    input:focus {
+      border-color: var(--green);
+      box-shadow: 0 0 0 1px var(--green);
+    }
+
+    /* ─── BUTTONS ─── */
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 10px 20px;
+      border-radius: 4px;
+      border: none;
+      cursor: pointer;
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 0.8rem;
+      font-weight: 600;
+      letter-spacing: 1px;
+      transition: all 0.15s;
+    }
+
+    .btn-green {
+      background: var(--green);
+      color: #000;
+    }
+
+    .btn-green:hover {
+      background: #00cc6e;
+      transform: translateY(-1px);
+    }
+
+    .btn-outline {
+      background: transparent;
+      border: 1px solid var(--green);
+      color: var(--green);
+    }
+
+    .btn-outline:hover {
+      background: rgba(0, 255, 136, 0.1);
+    }
+
+    .btn-cyan {
+      background: transparent;
+      border: 1px solid var(--cyan);
+      color: var(--cyan);
+    }
+
+    .btn-cyan:hover {
+      background: rgba(0, 212, 255, 0.1);
+    }
+
+    .btn:disabled {
+      opacity: 0.4;
+      cursor: not-allowed;
+      transform: none;
+    }
+
+    /* ─── AUTH STATUS ─── */
+    #auth-msg {
+      font-size: 0.8rem;
+      margin-top: 10px;
+      min-height: 1.2em;
+    }
+
+    .auth-ok {
+      color: var(--green);
+    }
+
+    .auth-err {
+      color: var(--red);
+    }
+
+    /* ─── UPLOAD ─── */
+    #drop-zone {
+      border: 2px dashed var(--border);
+      border-radius: 8px;
+      padding: 48px 24px;
+      text-align: center;
+      transition: all 0.2s;
+      cursor: pointer;
+      position: relative;
+    }
+
+    #drop-zone.drag-over {
+      border-color: var(--green);
+      background: rgba(0, 255, 136, 0.04);
+      box-shadow: inset 0 0 24px rgba(0, 255, 136, 0.05);
+    }
+
+    #drop-zone .drop-icon {
+      font-size: 2rem;
+      margin-bottom: 12px;
+      color: var(--dim);
+    }
+
+    #drop-zone .drop-text {
+      color: var(--dim);
+      font-size: 0.85rem;
+    }
+
+    #drop-zone .drop-hint {
+      color: var(--dim);
+      font-size: 0.7rem;
+      margin-top: 6px;
+    }
+
+    #file-input {
+      display: none;
+    }
+
+    /* ─── PROGRESS ─── */
+    #progress-area {
+      display: none;
+      margin-top: 16px;
+    }
+
+    #progress-label {
+      display: flex;
+      justify-content: space-between;
+      font-size: 0.75rem;
+      color: var(--dim);
+      margin-bottom: 6px;
+    }
+
+    #speed-label {
+      color: var(--cyan);
+    }
+
+    .progress-bar-bg {
+      width: 100%;
+      height: 6px;
+      background: var(--surface);
+      border-radius: 3px;
+      overflow: hidden;
+    }
+
+    .progress-bar-fill {
+      height: 100%;
+      width: 0%;
+      background: linear-gradient(90deg, var(--green), var(--cyan));
+      border-radius: 3px;
+      transition: width 0.1s linear;
+      box-shadow: 0 0 6px var(--green);
+    }
+
+    #upload-result {
+      font-size: 0.8rem;
+      margin-top: 10px;
+      min-height: 1.2em;
+    }
+
+    /* ─── FILES LIST (shared + phone-received) ─── */
+    #files-list,
+    #phone-files-list {
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+      margin-top: 4px;
+    }
+
+    .file-row {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 6px;
+      padding: 12px 16px;
+      transition: border-color 0.15s;
+    }
+
+    .file-row:hover {
+      border-color: #3a3a3a;
+    }
+
+    .file-icon {
+      color: var(--dim);
+      font-size: 1rem;
+    }
+
+    .file-info {
+      flex: 1;
+      min-width: 0;
+    }
+
+    .file-name {
+      color: var(--text);
+      font-size: 0.85rem;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+
+    .file-meta {
+      color: var(--dim);
+      font-size: 0.65rem;
+      margin-top: 2px;
+    }
+
+    .file-hash {
+      color: #3a5a3a;
+      font-size: 0.6rem;
+      margin-top: 2px;
+      word-break: break-all;
+    }
+
+    .dl-btn {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 0.7rem;
+      color: var(--cyan);
+      text-decoration: none;
+      border: 1px solid var(--cyan);
+      padding: 5px 10px;
+      border-radius: 3px;
+      white-space: nowrap;
+      transition: all 0.15s;
+    }
+
+    .dl-btn:hover {
+      background: rgba(0, 212, 255, 0.1);
+    }
+
+    .phone-dl-btn {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 0.7rem;
+      color: var(--yellow);
+      text-decoration: none;
+      border: 1px solid var(--yellow);
+      padding: 5px 10px;
+      border-radius: 3px;
+      white-space: nowrap;
+      transition: all 0.15s;
+      display: inline-block;
+    }
+
+    .phone-dl-btn:hover {
+      background: rgba(255, 215, 0, 0.08);
+    }
+
+    .files-empty {
+      color: var(--dim);
+      font-size: 0.8rem;
+      text-align: center;
+      padding: 20px;
+    }
+
+    /* ─── LOG ─── */
+    #log-box {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 6px;
+      padding: 12px 14px;
+      height: 300px;
+      overflow-y: auto;
+      font-size: 0.72rem;
+      line-height: 1.6;
+    }
+
+    .log-ok {
+      color: var(--green);
+    }
+
+    .log-tx {
+      color: var(--cyan);
+    }
+
+    .log-err {
+      color: var(--red);
+    }
+
+    .log-info {
+      color: var(--dim);
+    }
+
+    #log-box::-webkit-scrollbar {
+      width: 4px;
+    }
+
+    #log-box::-webkit-scrollbar-track {
+      background: transparent;
+    }
+
+    #log-box::-webkit-scrollbar-thumb {
+      background: var(--border);
+      border-radius: 2px;
+    }
+
+    /* ─── FOOTER ─── */
+    footer {
+      color: var(--dim);
+      font-size: 0.65rem;
+      text-align: center;
+      padding: 20px;
+      border-top: 1px solid var(--border);
+      width: 100%;
+    }
+
+    .hidden {
+      display: none !important;
+    }
+
+    #files-section,
+    #phone-section,
+    #upload-section,
+    #log-section {
+      opacity: 0.3;
+      pointer-events: none;
+    }
+
+    #files-section.unlocked,
+    #phone-section.unlocked,
+    #upload-section.unlocked,
+    #log-section.unlocked {
+      opacity: 1;
+      pointer-events: all;
+    }
+
+    /* Phone section accent */
+    #phone-section {
+      border-color: var(--border);
+    }
+
+    #phone-section.unlocked {
+      border-color: #3a3a20;
+    }
+
+    .card-title-row {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 16px;
+    }
+
+    .card-title-row .card-title {
+      margin-bottom: 0;
+      flex: 1;
+    }
+  </style>
+</head>
+
+<body>
+
+  <!-- ─── HEADER ─── -->
+  <header>
+    <div>
+      <div class="logo">LOCAL_SHARE</div>
+      <div class="logo-sub">// Secure LAN Transfer · 4GB+ supported</div>
+    </div>
+    <div class="status-dot" id="status-dot"></div>
+  </header>
+
+  <!-- ─── MAIN ─── -->
+  <main>
+
+    <!-- ── AUTH ── -->
+    <div class="card" id="auth-section">
+      <div class="card-title">[ 01 ] Authentication</div>
+      <p style="color:var(--dim);font-size:0.78rem;margin-bottom:14px;">
+        Enter the 6-digit PIN shown on the phone to unlock transfers.
+      </p>
+      <div class="pin-input-row">
+        <input type="password" id="pin-input" maxlength="6" placeholder="——————" autocomplete="off" />
+        <button class="btn btn-green" id="auth-btn" onclick="authenticate()">UNLOCK →</button>
+      </div>
+      <div id="auth-msg"></div>
+    </div>
+
+    <!-- ── UPLOAD (Laptop → Phone) ── -->
+    <div class="card" id="upload-section">
+      <div class="card-title">[ 02 ] Upload → Phone &nbsp;<span
+          style="color:var(--dim);font-size:0.6rem;letter-spacing:1px;">RAW STREAM · NO SIZE LIMIT</span></div>
+      <div id="drop-zone" ondragover="dragOver(event)" ondragleave="dragLeave(event)" ondrop="dropFile(event)"
+        onclick="document.getElementById('file-input').click()">
+        <div class="drop-icon">📁</div>
+        <div class="drop-text">Drag &amp; drop files here</div>
+        <div class="drop-hint">or click to browse — supports 4 GB+ files</div>
+      </div>
+      <input type="file" id="file-input" multiple onchange="filesSelected(this.files)" />
+
+      <div id="progress-area">
+        <div id="progress-label">
+          <span id="progress-filename">Uploading…</span>
+          <span id="speed-label">0 MB/s</span>
+        </div>
+        <div class="progress-bar-bg">
+          <div class="progress-bar-fill" id="progress-fill"></div>
+        </div>
+        <div style="text-align:right;font-size:0.7rem;color:var(--dim);margin-top:4px;">
+          <span id="progress-pct">0%</span>
+        </div>
+      </div>
+      <div id="upload-result"></div>
+    </div>
+
+    <!-- ── SHARED FILES (on phone, for download by laptop) ── -->
+    <div class="card" id="files-section">
+      <div class="card-title-row">
+        <div class="card-title">[ 03 ] Shared from Phone</div>
+        <button class="btn btn-outline" style="padding:4px 10px;font-size:0.65rem;" onclick="loadFiles()">↻
+          Refresh</button>
+      </div>
+      <div id="files-list">
+        <div class="files-empty">No shared files yet.</div>
+      </div>
+    </div>
+
+    <!-- ── PHONE RECEIVED FILES (Phone → Laptop) ── -->
+    <div class="card" id="phone-section">
+      <div class="card-title-row">
+        <div class="card-title" style="color:var(--yellow);opacity:0.7;">[ 04 ] Phone Received Files → Download to
+          Laptop</div>
+        <button class="btn btn-cyan" style="padding:4px 10px;font-size:0.65rem;" onclick="loadPhoneFiles()">↻
+          Refresh</button>
+      </div>
+      <p style="color:var(--dim);font-size:0.72rem;margin-bottom:12px;">
+        Files uploaded to this phone are listed here. Click Download to save them to your laptop.
+      </p>
+      <div id="phone-files-list">
+        <div class="files-empty">No received files yet.</div>
+      </div>
+    </div>
+
+    <!-- ── LOG ── -->
+    <div class="card" id="log-section">
+      <div class="card-title-row">
+        <div class="card-title">[ 06 ] Transfer Log</div>
+        <button class="btn btn-outline"
+          style="padding:4px 10px;font-size:0.65rem;color:var(--red);border-color:var(--red);" onclick="clearLog()">✕
+          Clear</button>
+      </div>
+      <div id="log-box"></div>
+    </div>
+
+  </main>
+
+  <footer>LocalShare v2.0 · No cloud · No internet · Fully local · Supports 4 GB+ · Token auto-expires in 15 min
+  </footer>
+
+  <!-- ─── SCRIPT ─── -->
+  <script>
+    let AUTH_TOKEN = null;
+
+    // ── Helpers ──
+    function log(msg, cls = 'log-info') {
+      const box = document.getElementById('log-box');
+      const line = document.createElement('div');
+      line.className = cls;
+      const ts = new Date().toLocaleTimeString('en-GB', { hour12: false });
+      line.textContent = `[${ts}] ${msg}`;
+      box.appendChild(line);
+      box.scrollTop = box.scrollHeight;
+    }
+
+    function setMsg(id, text, cls) {
+      const el = document.getElementById(id);
+      el.textContent = text;
+      el.className = cls;
+    }
+
+    function unlockUI() {
+      ['upload-section', 'files-section', 'phone-section', 'log-section'].forEach(id => {
+        document.getElementById(id).classList.add('unlocked');
+      });
+      document.getElementById('status-dot').style.background = 'var(--green)';
+      document.getElementById('auth-section').style.borderColor = 'var(--border)';
+      log('[✓] Authenticated — ready for transfer', 'log-ok');
+      loadFiles();
+      loadPhoneFiles();
+
+      // Auto-refresh phone received files every 5 seconds
+      if (window._phoneRefreshTimer) clearInterval(window._phoneRefreshTimer);
+      window._phoneRefreshTimer = setInterval(() => {
+        if (AUTH_TOKEN) loadPhoneFiles();
+        else clearInterval(window._phoneRefreshTimer);
+      }, 5000);
+
+      // Auto token expiry warning at 14 min
+      setTimeout(() => {
+        log('[!] Token expires in 1 minute. Re-enter PIN to continue.', 'log-err');
+      }, 14 * 60 * 1000);
+    }
+
+    function lockUI() {
+      AUTH_TOKEN = null;
+      sessionStorage.removeItem('auth_token');
+      if (window._phoneRefreshTimer) { clearInterval(window._phoneRefreshTimer); window._phoneRefreshTimer = null; }
+      ['upload-section', 'files-section', 'phone-section', 'log-section'].forEach(id => {
+        document.getElementById(id).classList.remove('unlocked');
+      });
+      document.getElementById('status-dot').style.background = 'var(--red)';
+      document.getElementById('auth-section').style.borderColor = 'var(--green)';
+      document.getElementById('auth-btn').disabled = false;
+    }
+
+    // ── Auth ──
+    async function authenticate() {
+      const pin = document.getElementById('pin-input').value.trim();
+      if (pin.length !== 6) {
+        setMsg('auth-msg', '[✗] PIN must be 6 digits', 'auth-err');
+        return;
+      }
+      document.getElementById('auth-btn').disabled = true;
+      setMsg('auth-msg', 'Verifying…', 'log-info');
+      try {
+        const resp = await fetch('/auth', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ pin })
+        });
+        const data = await resp.json();
+        if (resp.ok && data.token) {
+          AUTH_TOKEN = data.token;
+          sessionStorage.setItem('auth_token', AUTH_TOKEN);
+          setMsg('auth-msg', '[✓] Access granted', 'auth-ok');
+          unlockUI();
+        } else if (resp.status === 429) {
+          const retryAfter = data.retryAfter || 60;
+          setMsg('auth-msg', `[⛔] Too many attempts. Locked out for ${retryAfter}s.`, 'auth-err');
+          startLockoutCountdown(retryAfter);
+        } else {
+          const rem = data.attemptsRemaining;
+          const msg = rem !== undefined
+            ? `[✗] Wrong PIN — ${rem} attempt${rem !== 1 ? 's' : ''} remaining`
+            : '[✗] ' + (data.error || 'Wrong PIN');
+          setMsg('auth-msg', msg, 'auth-err');
+          document.getElementById('auth-btn').disabled = false;
+        }
+      } catch (e) {
+        setMsg('auth-msg', '[✗] Connection error: ' + e.message, 'auth-err');
+        document.getElementById('auth-btn').disabled = false;
+      }
+    }
+
+    function startLockoutCountdown(seconds) {
+      let remaining = seconds;
+      const btn = document.getElementById('auth-btn');
+      btn.disabled = true;
+      const interval = setInterval(() => {
+        remaining--;
+        if (remaining <= 0) {
+          clearInterval(interval);
+          btn.disabled = false;
+          setMsg('auth-msg', '[!] Lockout expired. Enter PIN to try again.', 'log-info');
+        } else {
+          setMsg('auth-msg', `[⛔] Locked out — ${remaining}s remaining`, 'auth-err');
+        }
+      }, 1000);
+    }
+
+    // ── Token re-validation on page load ──
+    // FIX: Previously the UI was unlocked blindly from sessionStorage.
+    // Now we verify the token is still live by pinging /files first.
+    window.addEventListener('DOMContentLoaded', async () => {
+      const saved = sessionStorage.getItem('auth_token');
+      if (!saved) return;
+
+      setMsg('auth-msg', '[↻] Checking saved session…', 'log-info');
+      try {
+        const resp = await fetch('/files', {
+          headers: { 'X-Auth-Token': saved }
+        });
+        if (resp.ok) {
+          AUTH_TOKEN = saved;
+          setMsg('auth-msg', '[✓] Session restored', 'auth-ok');
+          unlockUI();
+        } else {
+          // Token expired or invalid — don't unlock UI
+          sessionStorage.removeItem('auth_token');
+          setMsg('auth-msg', '[!] Session expired. Re-enter PIN.', 'auth-err');
+          document.getElementById('auth-btn').disabled = false;
+          log('[!] Saved session expired — re-authentication required', 'log-err');
+        }
+      } catch (e) {
+        setMsg('auth-msg', '[✗] Could not verify session: ' + e.message, 'auth-err');
+        document.getElementById('auth-btn').disabled = false;
+      }
+    });
+
+    document.getElementById('pin-input').addEventListener('keydown', e => {
+      if (e.key === 'Enter') authenticate();
+    });
+
+    // ── Drag & Drop ──
+    function dragOver(e) {
+      e.preventDefault();
+      document.getElementById('drop-zone').classList.add('drag-over');
+    }
+    function dragLeave() {
+      document.getElementById('drop-zone').classList.remove('drag-over');
+    }
+    function dropFile(e) {
+      e.preventDefault();
+      dragLeave();
+      uploadFiles(e.dataTransfer.files);
+    }
+    function filesSelected(files) { uploadFiles(files); }
+
+    // ── Upload: raw binary stream (no FormData, no multipart, supports 4GB+) ──
+    function uploadFiles(files) {
+      if (!files || files.length === 0) return;
+      // Upload sequentially to avoid saturating bandwidth
+      let chain = Promise.resolve();
+      Array.from(files).forEach(file => {
+        chain = chain.then(() => uploadSingle(file));
+      });
+    }
+
+    function uploadSingle(file) {
+      return new Promise((resolve) => {
+        const progArea = document.getElementById('progress-area');
+        const progFill = document.getElementById('progress-fill');
+        const progPct = document.getElementById('progress-pct');
+        const speedEl = document.getElementById('speed-label');
+        const nameEl = document.getElementById('progress-filename');
+        const resultEl = document.getElementById('upload-result');
+
+        progArea.style.display = 'block';
+        progFill.style.width = '0%';
+        progPct.textContent = '0%';
+        speedEl.textContent = '0 MB/s';
+        nameEl.textContent = file.name;
+        resultEl.textContent = '';
+
+        log(`[⇄] Uploading: ${file.name} (${fmtSize(file.size)})`, 'log-tx');
+
+        const xhr = new XMLHttpRequest();
+        let startTime = Date.now();
+        let lastLoaded = 0;
+        let lastTime = startTime;
+
+        xhr.upload.addEventListener('progress', e => {
+          if (!e.lengthComputable) return;
+          const pct = Math.round((e.loaded / e.total) * 100);
+          progFill.style.width = pct + '%';
+          progPct.textContent = pct + '%';
+
+          const now = Date.now();
+          const dt = (now - lastTime) / 1000;
+          if (dt > 0.3) {
+            const speed = ((e.loaded - lastLoaded) / dt) / (1024 * 1024);
+            speedEl.textContent = speed.toFixed(1) + ' MB/s';
+            lastLoaded = e.loaded;
+            lastTime = now;
+          }
+        });
+
+        xhr.addEventListener('load', () => {
+          if (xhr.status === 200) {
+            const data = JSON.parse(xhr.responseText);
+            const elapsed = ((Date.now() - startTime) / 1000).toFixed(1);
+            const avgSpeed = (file.size / (Date.now() - startTime) * 1000 / (1024 * 1024)).toFixed(1);
+            progFill.style.width = '100%';
+            progPct.textContent = '100%';
+            const hashStr = data.sha256 ? ` · SHA-256: ${data.sha256.slice(0, 16)}…` : '';
+            resultEl.textContent = `[✓] ${data.name} · ${fmtSize(data.size)} · ${elapsed}s · Avg ${avgSpeed} MB/s${hashStr}`;
+            resultEl.style.color = 'var(--green)';
+            log(`[✓] Saved: ${data.name}${data.sha256 ? ' | SHA-256: ' + data.sha256.slice(0, 16) + '…' : ''}`, 'log-ok');
+            loadFiles();
+            loadPhoneFiles();  // also refresh phone-received list
+            resolve();
+          } else if (xhr.status === 401) {
+            handleExpired();
+            resolve();
+          } else {
+            resultEl.textContent = '[✗] Upload failed: ' + xhr.responseText;
+            resultEl.style.color = 'var(--red)';
+            log('[✗] Upload failed: ' + xhr.responseText, 'log-err');
+            resolve();
+          }
+        });
+
+        xhr.addEventListener('error', () => {
+          resultEl.textContent = '[✗] Network error';
+          resultEl.style.color = 'var(--red)';
+          log('[✗] Network error during upload', 'log-err');
+          resolve();
+        });
+
+        // ── Send as raw binary (Content-Type: application/octet-stream) ──
+        // No FormData, no multipart boundary, no parseBody → no 2GB limit.
+        // Pause polling timer during upload to avoid bandwidth contention.
+        if (window._phoneRefreshTimer) { clearInterval(window._phoneRefreshTimer); window._phoneRefreshTimer = null; }
+        xhr.open('POST', '/upload');
+        xhr.setRequestHeader('X-Auth-Token', AUTH_TOKEN);
+        xhr.setRequestHeader('X-Filename', encodeURIComponent(file.name));
+        xhr.setRequestHeader('Content-Type', 'application/octet-stream');
+        xhr.addEventListener('loadend', () => {
+          // Resume polling after upload completes (success or failure)
+          if (AUTH_TOKEN && !window._phoneRefreshTimer) {
+            window._phoneRefreshTimer = setInterval(() => { if (AUTH_TOKEN) loadPhoneFiles(); else clearInterval(window._phoneRefreshTimer); }, 5000);
+          }
+        });
+        xhr.send(file);  // file object = raw binary body
+      });
+    }
+
+    // ── Shared Files List (phone→laptop shared list) ──
+    async function loadFiles() {
+      try {
+        const resp = await fetch('/files', {
+          headers: { 'X-Auth-Token': AUTH_TOKEN }
+        });
+        if (resp.status === 401) { handleExpired(); return; }
+        const files = await resp.json();
+        renderFiles(files);
+      } catch (e) {
+        log('[✗] Could not load file list: ' + e.message, 'log-err');
+      }
+    }
+
+    function renderFiles(files) {
+      const list = document.getElementById('files-list');
+      if (!files || files.length === 0) {
+        list.innerHTML = '<div class="files-empty">No shared files yet.</div>';
+        return;
+      }
+      list.innerHTML = files.map(f => `
+      <div class="file-row">
+        <span class="file-icon">📄</span>
+        <div class="file-info">
+          <div class="file-name">${escHtml(f.name)}</div>
+          <div class="file-meta">${fmtSize(f.size)}</div>
+          ${f.hash ? `<div class="file-hash">SHA-256: ${f.hash}</div>` : ''}
+        </div>
+        <a class="dl-btn"
+           href="/download/${encodeURIComponent(f.name)}?token=${encodeURIComponent(AUTH_TOKEN)}"
+           download="${escHtml(f.name)}"
+           onclick="log('[⇄] Downloading: ${escHtml(f.name)}', 'log-tx')"
+        >▼ Download</a>
+      </div>
+    `).join('');
+    }
+
+    // ── Phone Received Files (files uploaded to this device) ──
+    async function loadPhoneFiles() {
+      try {
+        const resp = await fetch('/phone-files', {
+          headers: { 'X-Auth-Token': AUTH_TOKEN }
+        });
+        if (resp.status === 401) { handleExpired(); return; }
+        const files = await resp.json();
+        renderPhoneFiles(files);
+      } catch (e) {
+        log('[✗] Could not load phone files: ' + e.message, 'log-err');
+      }
+    }
+
+    function renderPhoneFiles(files) {
+      const list = document.getElementById('phone-files-list');
+      if (!files || files.length === 0) {
+        list.innerHTML = '<div class="files-empty">No received files yet. Upload a file first.</div>';
+        return;
+      }
+
+      // Subfolder colour map
+      const subColors = {
+        Images: '#00ff88', Videos: '#00d4ff', Audio: '#ffd700',
+        Documents: '#ff8c00', Archives: '#cc88ff', Others: '#888'
+      };
+
+      list.innerHTML = files.map(f => {
+        const date = new Date(f.modified).toLocaleString();
+        const color = subColors[f.subfolder] || '#888';
+        const badge = `<span style="color:${color};font-size:0.6rem;border:1px solid ${color};padding:1px 5px;border-radius:3px;margin-left:6px;">${escHtml(f.subfolder || 'Others')}</span>`;
+        return `
+        <div class="file-row">
+          <span class="file-icon">📲</span>
+          <div class="file-info">
+            <div class="file-name">${escHtml(f.name)}${badge}</div>
+            <div class="file-meta">${fmtSize(f.size)} &nbsp;·&nbsp; ${date}</div>
+          </div>
+          <a class="phone-dl-btn"
+             href="/phone-download/${encodeURIComponent(f.id)}?token=${encodeURIComponent(AUTH_TOKEN)}"
+             download="${escHtml(f.name)}"
+             onclick="log('[⇄] Phone→Laptop: ${escHtml(f.name)}', 'log-tx')"
+          >▼ Save to Laptop</a>
+        </div>
+      `;
+      }).join('');
+    }
+
+
+    function handleExpired() {
+      lockUI();
+      setMsg('auth-msg', '[!] Session expired. Re-enter PIN.', 'auth-err');
+      log('[!] Session expired — re-authentication required', 'log-err');
+    }
+
+    // ── Utils ──
+    function fmtSize(bytes) {
+      if (bytes < 1024) return bytes + ' B';
+      if (bytes < 1024 * 1024) return (bytes / 1024).toFixed(1) + ' KB';
+      if (bytes < 1024 * 1024 * 1024) return (bytes / (1024 * 1024)).toFixed(1) + ' MB';
+      return (bytes / (1024 * 1024 * 1024)).toFixed(2) + ' GB';
+    }
+
+    function escHtml(str) {
+      return String(str)
+        .replace(/&/g, '&amp;')
+        .replace(/</g, '&lt;')
+        .replace(/>/g, '&gt;')
+        .replace(/"/g, '&quot;');
+    }
+
+    function clearLog() {
+      document.getElementById('log-box').innerHTML = '';
+    }
+  </script>
+</body>
+
+</html>

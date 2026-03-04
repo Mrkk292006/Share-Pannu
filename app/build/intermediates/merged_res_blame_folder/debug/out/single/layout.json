@@ -1,0 +1,38 @@
+[
+    {
+        "merged": "C:\\Users\\kasiv\\.gradle\\daemon\\8.7\\com.localshare.app-mergeDebugResources-34:\\layout\\item_received_file.xml",
+        "source": "C:\\Users\\kasiv\\.gradle\\daemon\\8.7\\com.localshare.app-main-37:\\layout\\item_received_file.xml"
+    },
+    {
+        "merged": "C:\\Users\\kasiv\\.gradle\\daemon\\8.7\\com.localshare.app-mergeDebugResources-34:\\layout\\activity_phone_to_phone.xml",
+        "source": "C:\\Users\\kasiv\\.gradle\\daemon\\8.7\\com.localshare.app-main-37:\\layout\\activity_phone_to_phone.xml"
+    },
+    {
+        "merged": "com.localshare.app-mergeDebugResources-34:/layout/activity_main.xml",
+        "source": "com.localshare.app-main-37:/layout/activity_main.xml"
+    },
+    {
+        "merged": "C:\\Users\\kasiv\\.gradle\\daemon\\8.7\\com.localshare.app-mergeDebugResources-34:\\layout\\activity_p2p_sender.xml",
+        "source": "C:\\Users\\kasiv\\.gradle\\daemon\\8.7\\com.localshare.app-main-37:\\layout\\activity_p2p_sender.xml"
+    },
+    {
+        "merged": "C:\\Users\\kasiv\\.gradle\\daemon\\8.7\\com.localshare.app-mergeDebugResources-34:\\layout\\activity_p2p_receiver.xml",
+        "source": "C:\\Users\\kasiv\\.gradle\\daemon\\8.7\\com.localshare.app-main-37:\\layout\\activity_p2p_receiver.xml"
+    },
+    {
+        "merged": "C:\\Users\\kasiv\\.gradle\\daemon\\8.7\\com.localshare.app-mergeDebugResources-34:\\layout\\item_team_file.xml",
+        "source": "C:\\Users\\kasiv\\.gradle\\daemon\\8.7\\com.localshare.app-main-37:\\layout\\item_team_file.xml"
+    },
+    {
+        "merged": "C:\\Users\\kasiv\\.gradle\\daemon\\8.7\\com.localshare.app-mergeDebugResources-34:\\layout\\activity_main.xml",
+        "source": "C:\\Users\\kasiv\\.gradle\\daemon\\8.7\\com.localshare.app-main-37:\\layout\\activity_main.xml"
+    },
+    {
+        "merged": "C:\\Users\\kasiv\\.gradle\\daemon\\8.7\\com.localshare.app-mergeDebugResources-34:\\layout\\activity_team_sharing.xml",
+        "source": "C:\\Users\\kasiv\\.gradle\\daemon\\8.7\\com.localshare.app-main-37:\\layout\\activity_team_sharing.xml"
+    },
+    {
+        "merged": "C:\\Users\\kasiv\\.gradle\\daemon\\8.7\\com.localshare.app-mergeDebugResources-34:\\layout\\activity_sharing.xml",
+        "source": "C:\\Users\\kasiv\\.gradle\\daemon\\8.7\\com.localshare.app-main-37:\\layout\\activity_sharing.xml"
+    }
+]

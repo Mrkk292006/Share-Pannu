@@ -1,0 +1,110 @@
+[
+    {
+        "merged": "C:\\Users\\kasiv\\.gradle\\daemon\\8.7\\com.localshare.app-merged_res-35:\\drawable_card_bg.xml.flat",
+        "source": "C:\\Users\\kasiv\\.gradle\\daemon\\8.7\\com.localshare.app-main-37:\\drawable\\card_bg.xml"
+    },
+    {
+        "merged": "C:\\Users\\kasiv\\.gradle\\daemon\\8.7\\com.localshare.app-merged_res-35:\\mipmap-mdpi_ic_launcher_round.png.flat",
+        "source": "C:\\Users\\kasiv\\.gradle\\daemon\\8.7\\com.localshare.app-main-37:\\mipmap-mdpi\\ic_launcher_round.png"
+    },
+    {
+        "merged": "C:\\Users\\kasiv\\.gradle\\daemon\\8.7\\com.localshare.app-merged_res-35:\\drawable_ic_launcher_foreground.xml.flat",
+        "source": "C:\\Users\\kasiv\\.gradle\\daemon\\8.7\\com.localshare.app-main-37:\\drawable\\ic_launcher_foreground.xml"
+    },
+    {
+        "merged": "com.localshare.app-merged_res-35:/drawable_ic_compare_arrows.xml.flat",
+        "source": "com.localshare.app-main-37:/drawable/ic_compare_arrows.xml"
+    },
+    {
+        "merged": "C:\\Users\\kasiv\\.gradle\\daemon\\8.7\\com.localshare.app-merged_res-35:\\mipmap-hdpi_ic_launcher.xml.flat",
+        "source": "C:\\Users\\kasiv\\.gradle\\daemon\\8.7\\com.localshare.app-main-37:\\mipmap-hdpi\\ic_launcher.xml"
+    },
+    {
+        "merged": "C:\\Users\\kasiv\\.gradle\\daemon\\8.7\\com.localshare.app-merged_res-35:\\layout_item_team_file.xml.flat",
+        "source": "C:\\Users\\kasiv\\.gradle\\daemon\\8.7\\com.localshare.app-main-37:\\layout\\item_team_file.xml"
+    },
+    {
+        "merged": "C:\\Users\\kasiv\\.gradle\\daemon\\8.7\\com.localshare.app-merged_res-35:\\mipmap-hdpi_ic_launcher_round.xml.flat",
+        "source": "C:\\Users\\kasiv\\.gradle\\daemon\\8.7\\com.localshare.app-main-37:\\mipmap-hdpi\\ic_launcher_round.xml"
+    },
+    {
+        "merged": "C:\\Users\\kasiv\\.gradle\\daemon\\8.7\\com.localshare.app-merged_res-35:\\mipmap-xxxhdpi_ic_launcher.png.flat",
+        "source": "C:\\Users\\kasiv\\.gradle\\daemon\\8.7\\com.localshare.app-main-37:\\mipmap-xxxhdpi\\ic_launcher.png"
+    },
+    {
+        "merged": "C:\\Users\\kasiv\\.gradle\\daemon\\8.7\\com.localshare.app-merged_res-35:\\mipmap-hdpi_ic_launcher_round.png.flat",
+        "source": "C:\\Users\\kasiv\\.gradle\\daemon\\8.7\\com.localshare.app-main-37:\\mipmap-hdpi\\ic_launcher_round.png"
+    },
+    {
+        "merged": "C:\\Users\\kasiv\\.gradle\\daemon\\8.7\\com.localshare.app-merged_res-35:\\layout_activity_p2p_sender.xml.flat",
+        "source": "C:\\Users\\kasiv\\.gradle\\daemon\\8.7\\com.localshare.app-main-37:\\layout\\activity_p2p_sender.xml"
+    },
+    {
+        "merged": "C:\\Users\\kasiv\\.gradle\\daemon\\8.7\\com.localshare.app-merged_res-35:\\layout_activity_main.xml.flat",
+        "source": "C:\\Users\\kasiv\\.gradle\\daemon\\8.7\\com.localshare.app-main-37:\\layout\\activity_main.xml"
+    },
+    {
+        "merged": "C:\\Users\\kasiv\\.gradle\\daemon\\8.7\\com.localshare.app-merged_res-35:\\mipmap-xxhdpi_ic_launcher.png.flat",
+        "source": "C:\\Users\\kasiv\\.gradle\\daemon\\8.7\\com.localshare.app-main-37:\\mipmap-xxhdpi\\ic_launcher.png"
+    },
+    {
+        "merged": "C:\\Users\\kasiv\\.gradle\\daemon\\8.7\\com.localshare.app-merged_res-35:\\mipmap-anydpi-v26_ic_launcher_round.xml.flat",
+        "source": "C:\\Users\\kasiv\\.gradle\\daemon\\8.7\\com.localshare.app-main-37:\\mipmap-anydpi-v26\\ic_launcher_round.xml"
+    },
+    {
+        "merged": "C:\\Users\\kasiv\\.gradle\\daemon\\8.7\\com.localshare.app-merged_res-35:\\xml_file_paths.xml.flat",
+        "source": "C:\\Users\\kasiv\\.gradle\\daemon\\8.7\\com.localshare.app-main-37:\\xml\\file_paths.xml"
+    },
+    {
+        "merged": "C:\\Users\\kasiv\\.gradle\\daemon\\8.7\\com.localshare.app-merged_res-35:\\mipmap-mdpi_ic_launcher.png.flat",
+        "source": "C:\\Users\\kasiv\\.gradle\\daemon\\8.7\\com.localshare.app-main-37:\\mipmap-mdpi\\ic_launcher.png"
+    },
+    {
+        "merged": "C:\\Users\\kasiv\\.gradle\\daemon\\8.7\\com.localshare.app-merged_res-35:\\mipmap-xxxhdpi_ic_launcher_round.png.flat",
+        "source": "C:\\Users\\kasiv\\.gradle\\daemon\\8.7\\com.localshare.app-main-37:\\mipmap-xxxhdpi\\ic_launcher_round.png"
+    },
+    {
+        "merged": "C:\\Users\\kasiv\\.gradle\\daemon\\8.7\\com.localshare.app-merged_res-35:\\mipmap-xhdpi_ic_launcher.png.flat",
+        "source": "C:\\Users\\kasiv\\.gradle\\daemon\\8.7\\com.localshare.app-main-37:\\mipmap-xhdpi\\ic_launcher.png"
+    },
+    {
+        "merged": "com.localshare.app-merged_res-35:/layout_activity_main.xml.flat",
+        "source": "com.localshare.app-main-37:/layout/activity_main.xml"
+    },
+    {
+        "merged": "C:\\Users\\kasiv\\.gradle\\daemon\\8.7\\com.localshare.app-merged_res-35:\\mipmap-xhdpi_ic_launcher_round.png.flat",
+        "source": "C:\\Users\\kasiv\\.gradle\\daemon\\8.7\\com.localshare.app-main-37:\\mipmap-xhdpi\\ic_launcher_round.png"
+    },
+    {
+        "merged": "C:\\Users\\kasiv\\.gradle\\daemon\\8.7\\com.localshare.app-merged_res-35:\\layout_activity_team_sharing.xml.flat",
+        "source": "C:\\Users\\kasiv\\.gradle\\daemon\\8.7\\com.localshare.app-main-37:\\layout\\activity_team_sharing.xml"
+    },
+    {
+        "merged": "C:\\Users\\kasiv\\.gradle\\daemon\\8.7\\com.localshare.app-merged_res-35:\\mipmap-xxhdpi_ic_launcher_round.png.flat",
+        "source": "C:\\Users\\kasiv\\.gradle\\daemon\\8.7\\com.localshare.app-main-37:\\mipmap-xxhdpi\\ic_launcher_round.png"
+    },
+    {
+        "merged": "C:\\Users\\kasiv\\.gradle\\daemon\\8.7\\com.localshare.app-merged_res-35:\\mipmap-anydpi-v26_ic_launcher.xml.flat",
+        "source": "C:\\Users\\kasiv\\.gradle\\daemon\\8.7\\com.localshare.app-main-37:\\mipmap-anydpi-v26\\ic_launcher.xml"
+    },
+    {
+        "merged": "C:\\Users\\kasiv\\.gradle\\daemon\\8.7\\com.localshare.app-merged_res-35:\\mipmap-hdpi_ic_launcher.png.flat",
+        "source": "C:\\Users\\kasiv\\.gradle\\daemon\\8.7\\com.localshare.app-main-37:\\mipmap-hdpi\\ic_launcher.png"
+    },
+    {
+        "merged": "C:\\Users\\kasiv\\.gradle\\daemon\\8.7\\com.localshare.app-merged_res-35:\\layout_activity_phone_to_phone.xml.flat",
+        "source": "C:\\Users\\kasiv\\.gradle\\daemon\\8.7\\com.localshare.app-main-37:\\layout\\activity_phone_to_phone.xml"
+    },
+    {
+        "merged": "C:\\Users\\kasiv\\.gradle\\daemon\\8.7\\com.localshare.app-merged_res-35:\\layout_activity_p2p_receiver.xml.flat",
+        "source": "C:\\Users\\kasiv\\.gradle\\daemon\\8.7\\com.localshare.app-main-37:\\layout\\activity_p2p_receiver.xml"
+    },
+    {
+        "merged": "C:\\Users\\kasiv\\.gradle\\daemon\\8.7\\com.localshare.app-merged_res-35:\\layout_activity_sharing.xml.flat",
+        "source": "C:\\Users\\kasiv\\.gradle\\daemon\\8.7\\com.localshare.app-main-37:\\layout\\activity_sharing.xml"
+    },
+    {
+        "merged": "C:\\Users\\kasiv\\.gradle\\daemon\\8.7\\com.localshare.app-merged_res-35:\\layout_item_received_file.xml.flat",
+        "source": "C:\\Users\\kasiv\\.gradle\\daemon\\8.7\\com.localshare.app-main-37:\\layout\\item_received_file.xml"
+    }
+]

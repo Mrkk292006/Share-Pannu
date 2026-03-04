@@ -1,0 +1,181 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/bg_dark"
+    android:padding="24dp">
+
+    <!-- HEADER -->
+    <TextView
+        android:id="@+id/tvTitle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="LOCAL_SHARE"
+        android:textColor="@color/accent_green"
+        android:textSize="28sp"
+        android:fontFamily="monospace"
+        android:letterSpacing="0.15"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        android:layout_marginTop="32dp"/>
+
+    <TextView
+        android:id="@+id/tvSubtitle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="// Secure LAN File Transfer"
+        android:textColor="@color/text_dim"
+        android:textSize="12sp"
+        android:fontFamily="monospace"
+        app:layout_constraintTop_toBottomOf="@id/tvTitle"
+        app:layout_constraintStart_toStartOf="parent"
+        android:layout_marginTop="4dp"/>
+
+    <!-- STATUS CARD -->
+    <LinearLayout
+        android:id="@+id/cardStatus"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:background="@drawable/card_bg"
+        android:padding="20dp"
+        android:layout_marginTop="32dp"
+        app:layout_constraintTop_toBottomOf="@id/tvSubtitle"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent">
+
+        <TextView
+            android:text="NETWORK STATUS"
+            android:textColor="@color/text_dim"
+            android:textSize="10sp"
+            android:fontFamily="monospace"
+            android:letterSpacing="0.2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"/>
+
+        <TextView
+            android:id="@+id/tvWifiStatus"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Checking…"
+            android:textColor="@color/text_light"
+            android:textSize="16sp"
+            android:layout_marginTop="4dp"/>
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:background="@color/divider"
+            android:layout_marginTop="12dp"
+            android:layout_marginBottom="12dp"/>
+
+        <TextView
+            android:text="LOCAL ADDRESS"
+            android:textColor="@color/text_dim"
+            android:textSize="10sp"
+            android:fontFamily="monospace"
+            android:letterSpacing="0.2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"/>
+
+        <TextView
+            android:id="@+id/tvLocalIp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="—"
+            android:textColor="@color/accent_green"
+            android:textSize="17sp"
+            android:layout_marginTop="4dp"/>
+
+    </LinearLayout>
+
+    <!-- START BUTTON -->
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/btnStartSharing"
+        android:layout_width="0dp"
+        android:layout_height="56dp"
+        android:text="▶  START SHARING"
+        android:textSize="14sp"
+        android:fontFamily="monospace"
+        android:letterSpacing="0.1"
+        app:backgroundTint="@color/accent_green"
+        android:textColor="@color/bg_dark"
+        app:cornerRadius="4dp"
+        android:layout_marginTop="20dp"
+        app:layout_constraintTop_toBottomOf="@id/cardStatus"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"/>
+
+    <!-- TEAM SHARE BUTTON -->
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/btnTeamShare"
+        android:layout_width="0dp"
+        android:layout_height="52dp"
+        android:text="⬡  TEAM SHARE"
+        android:textSize="13sp"
+        android:fontFamily="monospace"
+        android:letterSpacing="0.1"
+        app:backgroundTint="#001A2A"
+        android:textColor="#00D4FF"
+        app:strokeColor="#00D4FF"
+        app:strokeWidth="1dp"
+        app:cornerRadius="4dp"
+        android:layout_marginTop="12dp"
+        app:layout_constraintTop_toBottomOf="@id/btnStartSharing"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"/>
+
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/btnP2pShare"
+        android:layout_width="0dp"
+        android:layout_height="52dp"
+        android:text="PHONE TO PHONE"
+        android:textSize="13sp"
+        android:fontFamily="monospace"
+        android:letterSpacing="0.1"
+        app:backgroundTint="@android:color/transparent"
+        android:textColor="#FF8C00"
+        app:strokeColor="#FF8C00"
+        app:strokeWidth="1dp"
+        app:cornerRadius="4dp"
+        app:icon="@drawable/ic_compare_arrows"
+        app:iconTint="#FF8C00"
+        app:iconSize="24dp"
+        app:iconPadding="8dp"
+        app:iconGravity="start"
+        android:layout_marginTop="12dp"
+        app:layout_constraintTop_toBottomOf="@id/btnTeamShare"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"/>
+
+    <!-- FOOTER -->
+    <TextView
+        android:id="@+id/tvFooter"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="No cloud · No internet · Fully local"
+        android:textColor="@color/text_dim"
+        android:textSize="11sp"
+        android:fontFamily="monospace"
+        app:layout_constraintBottom_toTopOf="@id/tvSignature"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:layout_marginBottom="8dp"/>
+
+    <!-- SIGNATURE -->
+    <TextView
+        android:id="@+id/tvSignature"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Created by Kasivishal"
+        android:textColor="#555555"
+        android:textSize="11sp"
+        android:fontFamily="monospace"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:layout_marginBottom="16dp"/>
+
+</androidx.constraintlayout.widget.ConstraintLayout>

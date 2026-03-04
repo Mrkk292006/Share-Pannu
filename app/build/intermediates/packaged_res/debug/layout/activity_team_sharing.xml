@@ -1,0 +1,315 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:background="@color/bg_dark">
+
+    <!-- Fixed header -->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:gravity="center_vertical"
+        android:paddingStart="20dp"
+        android:paddingEnd="20dp"
+        android:paddingTop="16dp"
+        android:paddingBottom="10dp"
+        android:background="@color/bg_dark">
+
+        <TextView
+            android:text="⬡ TEAM SHARE ACTIVE"
+            android:textColor="@color/accent_cyan"
+            android:textSize="16sp"
+            android:fontFamily="monospace"
+            android:letterSpacing="0.1"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"/>
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/btnTeamStop"
+            android:layout_width="wrap_content"
+            android:layout_height="40dp"
+            android:text="■ STOP"
+            android:textSize="11sp"
+            android:fontFamily="monospace"
+            app:backgroundTint="@color/btn_stop"
+            android:textColor="@color/text_light"
+            app:cornerRadius="4dp"/>
+    </LinearLayout>
+
+    <!-- Scrollable content -->
+    <androidx.core.widget.NestedScrollView
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        android:fillViewport="true">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:paddingStart="20dp"
+            android:paddingEnd="20dp"
+            android:paddingBottom="20dp">
+
+            <!-- URL card -->
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:background="@drawable/card_bg"
+                android:padding="16dp"
+                android:layout_marginTop="4dp">
+
+                <TextView
+                    android:text="TEAM WORKSPACE ADDRESS"
+                    android:textColor="@color/text_dim"
+                    android:textSize="10sp"
+                    android:fontFamily="monospace"
+                    android:letterSpacing="0.2"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"/>
+
+                <TextView
+                    android:id="@+id/tvTeamUrl"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="http://…:8081"
+                    android:textColor="@color/accent_cyan"
+                    android:textSize="15sp"
+                    android:fontFamily="monospace"
+                    android:layout_marginTop="4dp"/>
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="1dp"
+                    android:background="@color/divider"
+                    android:layout_marginTop="10dp"
+                    android:layout_marginBottom="10dp"/>
+
+                <TextView
+                    android:text="AUTH PIN"
+                    android:textColor="@color/text_dim"
+                    android:textSize="10sp"
+                    android:fontFamily="monospace"
+                    android:letterSpacing="0.2"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"/>
+
+                <TextView
+                    android:id="@+id/tvTeamPin"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="PIN: ——————"
+                    android:textColor="@color/accent_yellow"
+                    android:textSize="22sp"
+                    android:fontFamily="monospace"
+                    android:letterSpacing="0.3"
+                    android:layout_marginTop="4dp"/>
+
+            </LinearLayout>
+
+            <!-- QR card -->
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:background="@drawable/card_bg"
+                android:padding="16dp"
+                android:layout_marginTop="10dp"
+                android:gravity="center">
+
+                <TextView
+                    android:text="SCAN TO JOIN TEAM SESSION"
+                    android:textColor="@color/accent_cyan"
+                    android:textSize="10sp"
+                    android:fontFamily="monospace"
+                    android:letterSpacing="0.2"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"/>
+
+                <ImageView
+                    android:id="@+id/ivTeamQr"
+                    android:layout_width="180dp"
+                    android:layout_height="180dp"
+                    android:layout_gravity="center"
+                    android:layout_marginTop="8dp"
+                    android:background="#FFFFFF"
+                    android:padding="6dp"
+                    android:contentDescription="Team Share QR Code"/>
+
+            </LinearLayout>
+
+            <!-- Connection status -->
+            <TextView
+                android:id="@+id/tvTeamWaiting"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="⬤  Waiting for devices…"
+                android:textColor="@color/accent_cyan"
+                android:textSize="12sp"
+                android:layout_marginTop="10dp"/>
+
+            <!-- Phone Upload card -->
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:background="@drawable/card_bg"
+                android:padding="16dp"
+                android:layout_marginTop="10dp">
+
+                <!-- Header row -->
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:gravity="center_vertical"
+                    android:layout_marginBottom="10dp">
+
+                    <TextView
+                        android:text="[ UPLOAD FROM THIS PHONE ]"
+                        android:textColor="@color/accent_cyan"
+                        android:textSize="10sp"
+                        android:fontFamily="monospace"
+                        android:letterSpacing="0.15"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"/>
+
+                </LinearLayout>
+
+                <TextView
+                    android:id="@+id/tvPhoneUploadStatus"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Select files to share into the team workspace"
+                    android:textColor="@color/text_dim"
+                    android:textSize="11sp"
+                    android:fontFamily="monospace"
+                    android:layout_marginBottom="12dp"/>
+
+                <com.google.android.material.button.MaterialButton
+                    android:id="@+id/btnPhoneUpload"
+                    android:layout_width="wrap_content"
+                    android:layout_height="40dp"
+                    android:text="➕ ADD FILES"
+                    android:textSize="12sp"
+                    android:fontFamily="monospace"
+                    android:letterSpacing="0.05"
+                    app:backgroundTint="@color/accent_cyan"
+                    android:textColor="#000000"
+                    app:cornerRadius="4dp"/>
+
+            </LinearLayout>
+
+            <!-- Team Session Files card -->
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:background="@drawable/card_bg"
+                android:padding="16dp"
+                android:layout_marginTop="10dp">
+
+                <!-- Header row -->
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:gravity="center_vertical"
+                    android:layout_marginBottom="4dp">
+
+                    <TextView
+                        android:text="[ TEAM SESSION FILES ]"
+                        android:textColor="@color/accent_cyan"
+                        android:textSize="10sp"
+                        android:fontFamily="monospace"
+                        android:letterSpacing="0.15"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"/>
+
+                </LinearLayout>
+
+                <TextView
+                    android:id="@+id/tvTeamFileCount"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Session empty — upload files from any device"
+                    android:textColor="@color/text_dim"
+                    android:textSize="11sp"
+                    android:fontFamily="monospace"
+                    android:layout_marginBottom="6dp"/>
+
+                <androidx.recyclerview.widget.RecyclerView
+                    android:id="@+id/rvTeamFiles"
+                    android:layout_width="match_parent"
+                    android:layout_height="220dp"
+                    android:nestedScrollingEnabled="true"
+                    android:clipToPadding="false"/>
+
+            </LinearLayout>
+
+            <!-- Transfer Log card -->
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:background="@drawable/card_bg"
+                android:padding="12dp"
+                android:layout_marginTop="10dp">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:gravity="center_vertical"
+                    android:layout_marginBottom="6dp">
+
+                    <TextView
+                        android:text="TRANSFER LOG"
+                        android:textColor="@color/text_dim"
+                        android:textSize="10sp"
+                        android:fontFamily="monospace"
+                        android:letterSpacing="0.2"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"/>
+
+                    <com.google.android.material.button.MaterialButton
+                        android:id="@+id/btnClearTeamLog"
+                        android:layout_width="wrap_content"
+                        android:layout_height="32dp"
+                        android:text="✕ Clear"
+                        android:textSize="10sp"
+                        android:fontFamily="monospace"
+                        app:backgroundTint="#1A0000"
+                        android:textColor="#FF6666"
+                        app:strokeColor="#FF4444"
+                        app:strokeWidth="1dp"
+                        app:cornerRadius="4dp"
+                        android:layout_marginEnd="2dp"/>
+
+                </LinearLayout>
+
+                <androidx.recyclerview.widget.RecyclerView
+                    android:id="@+id/rvTeamLog"
+                    android:layout_width="match_parent"
+                    android:layout_height="200dp"
+                    android:nestedScrollingEnabled="true"
+                    android:clipToPadding="false"
+                    android:background="#0D0D0D"
+                    android:padding="8dp"/>
+
+            </LinearLayout>
+
+        </LinearLayout>
+    </androidx.core.widget.NestedScrollView>
+
+</LinearLayout>

@@ -1,0 +1,318 @@
+1<?xml version="1.0" encoding="utf-8"?>
+2<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+3    package="com.localshare.app"
+4    android:versionCode="1"
+5    android:versionName="1.0" >
+6
+7    <uses-sdk
+8        android:minSdkVersion="26"
+9        android:targetSdkVersion="34" />
+10
+11    <!-- Network -->
+12    <uses-permission android:name="android.permission.INTERNET" />
+12-->C:\Users\kasiv\Downloads\app\app\src\main\AndroidManifest.xml:5:5-67
+12-->C:\Users\kasiv\Downloads\app\app\src\main\AndroidManifest.xml:5:22-64
+13    <uses-permission android:name="android.permission.ACCESS_WIFI_STATE" />
+13-->C:\Users\kasiv\Downloads\app\app\src\main\AndroidManifest.xml:6:5-76
+13-->C:\Users\kasiv\Downloads\app\app\src\main\AndroidManifest.xml:6:22-73
+14    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+14-->C:\Users\kasiv\Downloads\app\app\src\main\AndroidManifest.xml:7:5-79
+14-->C:\Users\kasiv\Downloads\app\app\src\main\AndroidManifest.xml:7:22-76
+15    <uses-permission android:name="android.permission.CHANGE_WIFI_STATE" />
+15-->C:\Users\kasiv\Downloads\app\app\src\main\AndroidManifest.xml:8:5-76
+15-->C:\Users\kasiv\Downloads\app\app\src\main\AndroidManifest.xml:8:22-73
+16
+17    <!-- Scoped Storage - Media (API 33+) -->
+18    <uses-permission android:name="android.permission.READ_MEDIA_IMAGES" />
+18-->C:\Users\kasiv\Downloads\app\app\src\main\AndroidManifest.xml:11:5-76
+18-->C:\Users\kasiv\Downloads\app\app\src\main\AndroidManifest.xml:11:22-73
+19    <uses-permission android:name="android.permission.READ_MEDIA_VIDEO" />
+19-->C:\Users\kasiv\Downloads\app\app\src\main\AndroidManifest.xml:12:5-75
+19-->C:\Users\kasiv\Downloads\app\app\src\main\AndroidManifest.xml:12:22-72
+20    <uses-permission android:name="android.permission.READ_MEDIA_AUDIO" />
+20-->C:\Users\kasiv\Downloads\app\app\src\main\AndroidManifest.xml:13:5-75
+20-->C:\Users\kasiv\Downloads\app\app\src\main\AndroidManifest.xml:13:22-72
+21
+22    <!-- Legacy storage for API 26–29 -->
+23    <uses-permission
+23-->C:\Users\kasiv\Downloads\app\app\src\main\AndroidManifest.xml:16:5-17:38
+24        android:name="android.permission.READ_EXTERNAL_STORAGE"
+24-->C:\Users\kasiv\Downloads\app\app\src\main\AndroidManifest.xml:16:22-77
+25        android:maxSdkVersion="29" />
+25-->C:\Users\kasiv\Downloads\app\app\src\main\AndroidManifest.xml:17:9-35
+26    <uses-permission
+26-->C:\Users\kasiv\Downloads\app\app\src\main\AndroidManifest.xml:18:5-19:38
+27        android:name="android.permission.WRITE_EXTERNAL_STORAGE"
+27-->C:\Users\kasiv\Downloads\app\app\src\main\AndroidManifest.xml:18:22-78
+28        android:maxSdkVersion="29" />
+28-->C:\Users\kasiv\Downloads\app\app\src\main\AndroidManifest.xml:19:9-35
+29
+30    <!-- Service & Notifications -->
+31    <uses-permission android:name="android.permission.FOREGROUND_SERVICE" />
+31-->C:\Users\kasiv\Downloads\app\app\src\main\AndroidManifest.xml:22:5-77
+31-->C:\Users\kasiv\Downloads\app\app\src\main\AndroidManifest.xml:22:22-74
+32    <uses-permission android:name="android.permission.FOREGROUND_SERVICE_DATA_SYNC" />
+32-->C:\Users\kasiv\Downloads\app\app\src\main\AndroidManifest.xml:23:5-87
+32-->C:\Users\kasiv\Downloads\app\app\src\main\AndroidManifest.xml:23:22-84
+33    <uses-permission android:name="android.permission.POST_NOTIFICATIONS" />
+33-->C:\Users\kasiv\Downloads\app\app\src\main\AndroidManifest.xml:24:5-77
+33-->C:\Users\kasiv\Downloads\app\app\src\main\AndroidManifest.xml:24:22-74
+34    <uses-permission android:name="android.permission.WAKE_LOCK" />
+34-->C:\Users\kasiv\Downloads\app\app\src\main\AndroidManifest.xml:25:5-68
+34-->C:\Users\kasiv\Downloads\app\app\src\main\AndroidManifest.xml:25:22-65
+35
+36    <permission
+36-->[androidx.core:core:1.12.0] C:\Users\kasiv\.gradle\caches\transforms-4\a09928384ec1935e808ab75bc8da5541\transformed\core-1.12.0\AndroidManifest.xml:22:5-24:47
+37        android:name="com.localshare.app.DYNAMIC_RECEIVER_NOT_EXPORTED_PERMISSION"
+37-->[androidx.core:core:1.12.0] C:\Users\kasiv\.gradle\caches\transforms-4\a09928384ec1935e808ab75bc8da5541\transformed\core-1.12.0\AndroidManifest.xml:23:9-81
+38        android:protectionLevel="signature" />
+38-->[androidx.core:core:1.12.0] C:\Users\kasiv\.gradle\caches\transforms-4\a09928384ec1935e808ab75bc8da5541\transformed\core-1.12.0\AndroidManifest.xml:24:9-44
+39
+40    <uses-permission android:name="com.localshare.app.DYNAMIC_RECEIVER_NOT_EXPORTED_PERMISSION" />
+40-->[androidx.core:core:1.12.0] C:\Users\kasiv\.gradle\caches\transforms-4\a09928384ec1935e808ab75bc8da5541\transformed\core-1.12.0\AndroidManifest.xml:26:5-97
+40-->[androidx.core:core:1.12.0] C:\Users\kasiv\.gradle\caches\transforms-4\a09928384ec1935e808ab75bc8da5541\transformed\core-1.12.0\AndroidManifest.xml:26:22-94
+41    <uses-permission android:name="android.permission.CAMERA" /> <!-- Don't require camera, as this requires a rear camera. This allows it to work on the Nexus 7 -->
+41-->[com.journeyapps:zxing-android-embedded:4.3.0] C:\Users\kasiv\.gradle\caches\transforms-4\edab22c82cdf6245fbd5f0c78413b608\transformed\jetified-zxing-android-embedded-4.3.0\AndroidManifest.xml:22:5-65
+41-->[com.journeyapps:zxing-android-embedded:4.3.0] C:\Users\kasiv\.gradle\caches\transforms-4\edab22c82cdf6245fbd5f0c78413b608\transformed\jetified-zxing-android-embedded-4.3.0\AndroidManifest.xml:22:22-62
+42    <uses-feature
+42-->[com.journeyapps:zxing-android-embedded:4.3.0] C:\Users\kasiv\.gradle\caches\transforms-4\edab22c82cdf6245fbd5f0c78413b608\transformed\jetified-zxing-android-embedded-4.3.0\AndroidManifest.xml:25:5-27:36
+43        android:name="android.hardware.camera"
+43-->[com.journeyapps:zxing-android-embedded:4.3.0] C:\Users\kasiv\.gradle\caches\transforms-4\edab22c82cdf6245fbd5f0c78413b608\transformed\jetified-zxing-android-embedded-4.3.0\AndroidManifest.xml:26:9-47
+44        android:required="false" />
+44-->[com.journeyapps:zxing-android-embedded:4.3.0] C:\Users\kasiv\.gradle\caches\transforms-4\edab22c82cdf6245fbd5f0c78413b608\transformed\jetified-zxing-android-embedded-4.3.0\AndroidManifest.xml:27:9-33
+45    <uses-feature
+45-->[com.journeyapps:zxing-android-embedded:4.3.0] C:\Users\kasiv\.gradle\caches\transforms-4\edab22c82cdf6245fbd5f0c78413b608\transformed\jetified-zxing-android-embedded-4.3.0\AndroidManifest.xml:28:5-30:36
+46        android:name="android.hardware.camera.front"
+46-->[com.journeyapps:zxing-android-embedded:4.3.0] C:\Users\kasiv\.gradle\caches\transforms-4\edab22c82cdf6245fbd5f0c78413b608\transformed\jetified-zxing-android-embedded-4.3.0\AndroidManifest.xml:29:9-53
+47        android:required="false" /> <!-- TODO replace above two with next line after Android 4.2 -->
+47-->[com.journeyapps:zxing-android-embedded:4.3.0] C:\Users\kasiv\.gradle\caches\transforms-4\edab22c82cdf6245fbd5f0c78413b608\transformed\jetified-zxing-android-embedded-4.3.0\AndroidManifest.xml:30:9-33
+48    <!-- <uses-feature android:name="android.hardware.camera.any"/> -->
+49    <uses-feature
+49-->[com.journeyapps:zxing-android-embedded:4.3.0] C:\Users\kasiv\.gradle\caches\transforms-4\edab22c82cdf6245fbd5f0c78413b608\transformed\jetified-zxing-android-embedded-4.3.0\AndroidManifest.xml:33:5-35:36
+50        android:name="android.hardware.camera.autofocus"
+50-->[com.journeyapps:zxing-android-embedded:4.3.0] C:\Users\kasiv\.gradle\caches\transforms-4\edab22c82cdf6245fbd5f0c78413b608\transformed\jetified-zxing-android-embedded-4.3.0\AndroidManifest.xml:34:9-57
+51        android:required="false" />
+51-->[com.journeyapps:zxing-android-embedded:4.3.0] C:\Users\kasiv\.gradle\caches\transforms-4\edab22c82cdf6245fbd5f0c78413b608\transformed\jetified-zxing-android-embedded-4.3.0\AndroidManifest.xml:35:9-33
+52    <uses-feature
+52-->[com.journeyapps:zxing-android-embedded:4.3.0] C:\Users\kasiv\.gradle\caches\transforms-4\edab22c82cdf6245fbd5f0c78413b608\transformed\jetified-zxing-android-embedded-4.3.0\AndroidManifest.xml:36:5-38:36
+53        android:name="android.hardware.camera.flash"
+53-->[com.journeyapps:zxing-android-embedded:4.3.0] C:\Users\kasiv\.gradle\caches\transforms-4\edab22c82cdf6245fbd5f0c78413b608\transformed\jetified-zxing-android-embedded-4.3.0\AndroidManifest.xml:37:9-53
+54        android:required="false" />
+54-->[com.journeyapps:zxing-android-embedded:4.3.0] C:\Users\kasiv\.gradle\caches\transforms-4\edab22c82cdf6245fbd5f0c78413b608\transformed\jetified-zxing-android-embedded-4.3.0\AndroidManifest.xml:38:9-33
+55    <uses-feature
+55-->[com.journeyapps:zxing-android-embedded:4.3.0] C:\Users\kasiv\.gradle\caches\transforms-4\edab22c82cdf6245fbd5f0c78413b608\transformed\jetified-zxing-android-embedded-4.3.0\AndroidManifest.xml:39:5-41:36
+56        android:name="android.hardware.screen.landscape"
+56-->[com.journeyapps:zxing-android-embedded:4.3.0] C:\Users\kasiv\.gradle\caches\transforms-4\edab22c82cdf6245fbd5f0c78413b608\transformed\jetified-zxing-android-embedded-4.3.0\AndroidManifest.xml:40:9-57
+57        android:required="false" />
+57-->[com.journeyapps:zxing-android-embedded:4.3.0] C:\Users\kasiv\.gradle\caches\transforms-4\edab22c82cdf6245fbd5f0c78413b608\transformed\jetified-zxing-android-embedded-4.3.0\AndroidManifest.xml:41:9-33
+58    <uses-feature
+58-->[com.journeyapps:zxing-android-embedded:4.3.0] C:\Users\kasiv\.gradle\caches\transforms-4\edab22c82cdf6245fbd5f0c78413b608\transformed\jetified-zxing-android-embedded-4.3.0\AndroidManifest.xml:42:5-44:36
+59        android:name="android.hardware.wifi"
+59-->[com.journeyapps:zxing-android-embedded:4.3.0] C:\Users\kasiv\.gradle\caches\transforms-4\edab22c82cdf6245fbd5f0c78413b608\transformed\jetified-zxing-android-embedded-4.3.0\AndroidManifest.xml:43:9-45
+60        android:required="false" />
+60-->[com.journeyapps:zxing-android-embedded:4.3.0] C:\Users\kasiv\.gradle\caches\transforms-4\edab22c82cdf6245fbd5f0c78413b608\transformed\jetified-zxing-android-embedded-4.3.0\AndroidManifest.xml:44:9-33
+61
+62    <application
+62-->C:\Users\kasiv\Downloads\app\app\src\main\AndroidManifest.xml:27:5-97:19
+63        android:allowBackup="true"
+63-->C:\Users\kasiv\Downloads\app\app\src\main\AndroidManifest.xml:28:9-35
+64        android:appComponentFactory="androidx.core.app.CoreComponentFactory"
+64-->[androidx.core:core:1.12.0] C:\Users\kasiv\.gradle\caches\transforms-4\a09928384ec1935e808ab75bc8da5541\transformed\core-1.12.0\AndroidManifest.xml:28:18-86
+65        android:extractNativeLibs="false"
+66        android:icon="@mipmap/ic_launcher"
+66-->C:\Users\kasiv\Downloads\app\app\src\main\AndroidManifest.xml:29:9-43
+67        android:label="Share Pannu"
+67-->C:\Users\kasiv\Downloads\app\app\src\main\AndroidManifest.xml:30:9-36
+68        android:roundIcon="@mipmap/ic_launcher_round"
+68-->C:\Users\kasiv\Downloads\app\app\src\main\AndroidManifest.xml:31:9-54
+69        android:supportsRtl="true"
+69-->C:\Users\kasiv\Downloads\app\app\src\main\AndroidManifest.xml:32:9-35
+70        android:theme="@style/Theme.LocalShare"
+70-->C:\Users\kasiv\Downloads\app\app\src\main\AndroidManifest.xml:33:9-48
+71        android:usesCleartextTraffic="true" >
+71-->C:\Users\kasiv\Downloads\app\app\src\main\AndroidManifest.xml:34:9-44
+72        <activity
+72-->C:\Users\kasiv\Downloads\app\app\src\main\AndroidManifest.xml:36:9-44:20
+73            android:name="com.localshare.app.MainActivity"
+73-->C:\Users\kasiv\Downloads\app\app\src\main\AndroidManifest.xml:37:13-41
+74            android:exported="true"
+74-->C:\Users\kasiv\Downloads\app\app\src\main\AndroidManifest.xml:38:13-36
+75            android:screenOrientation="portrait" >
+75-->C:\Users\kasiv\Downloads\app\app\src\main\AndroidManifest.xml:39:13-49
+76            <intent-filter>
+76-->C:\Users\kasiv\Downloads\app\app\src\main\AndroidManifest.xml:40:13-43:29
+77                <action android:name="android.intent.action.MAIN" />
+77-->C:\Users\kasiv\Downloads\app\app\src\main\AndroidManifest.xml:41:17-69
+77-->C:\Users\kasiv\Downloads\app\app\src\main\AndroidManifest.xml:41:25-66
+78
+79                <category android:name="android.intent.category.LAUNCHER" />
+79-->C:\Users\kasiv\Downloads\app\app\src\main\AndroidManifest.xml:42:17-77
+79-->C:\Users\kasiv\Downloads\app\app\src\main\AndroidManifest.xml:42:27-74
+80            </intent-filter>
+81        </activity>
+82        <activity
+82-->C:\Users\kasiv\Downloads\app\app\src\main\AndroidManifest.xml:46:9-49:52
+83            android:name="com.localshare.app.SharingActivity"
+83-->C:\Users\kasiv\Downloads\app\app\src\main\AndroidManifest.xml:47:13-44
+84            android:exported="false"
+84-->C:\Users\kasiv\Downloads\app\app\src\main\AndroidManifest.xml:48:13-37
+85            android:screenOrientation="portrait" />
+85-->C:\Users\kasiv\Downloads\app\app\src\main\AndroidManifest.xml:49:13-49
+86        <activity
+86-->C:\Users\kasiv\Downloads\app\app\src\main\AndroidManifest.xml:51:9-54:52
+87            android:name="com.localshare.app.TeamSharingActivity"
+87-->C:\Users\kasiv\Downloads\app\app\src\main\AndroidManifest.xml:52:13-48
+88            android:exported="false"
+88-->C:\Users\kasiv\Downloads\app\app\src\main\AndroidManifest.xml:53:13-37
+89            android:screenOrientation="portrait" />
+89-->C:\Users\kasiv\Downloads\app\app\src\main\AndroidManifest.xml:54:13-49
+90        <activity
+90-->C:\Users\kasiv\Downloads\app\app\src\main\AndroidManifest.xml:56:9-59:52
+91            android:name="com.localshare.app.ActivityPhoneToPhone"
+91-->C:\Users\kasiv\Downloads\app\app\src\main\AndroidManifest.xml:57:13-49
+92            android:exported="false"
+92-->C:\Users\kasiv\Downloads\app\app\src\main\AndroidManifest.xml:58:13-37
+93            android:screenOrientation="portrait" />
+93-->C:\Users\kasiv\Downloads\app\app\src\main\AndroidManifest.xml:59:13-49
+94        <activity
+94-->C:\Users\kasiv\Downloads\app\app\src\main\AndroidManifest.xml:61:9-64:52
+95            android:name="com.localshare.app.ActivityP2PReceiver"
+95-->C:\Users\kasiv\Downloads\app\app\src\main\AndroidManifest.xml:62:13-48
+96            android:exported="false"
+96-->C:\Users\kasiv\Downloads\app\app\src\main\AndroidManifest.xml:63:13-37
+97            android:screenOrientation="portrait" />
+97-->C:\Users\kasiv\Downloads\app\app\src\main\AndroidManifest.xml:64:13-49
+98        <activity
+98-->C:\Users\kasiv\Downloads\app\app\src\main\AndroidManifest.xml:66:9-69:52
+99            android:name="com.localshare.app.ActivityP2PSender"
+99-->C:\Users\kasiv\Downloads\app\app\src\main\AndroidManifest.xml:67:13-46
+100            android:exported="false"
+100-->C:\Users\kasiv\Downloads\app\app\src\main\AndroidManifest.xml:68:13-37
+101            android:screenOrientation="portrait" />
+101-->C:\Users\kasiv\Downloads\app\app\src\main\AndroidManifest.xml:69:13-49
+102
+103        <service
+103-->C:\Users\kasiv\Downloads\app\app\src\main\AndroidManifest.xml:71:9-74:56
+104            android:name="com.localshare.app.FileTransferService"
+104-->C:\Users\kasiv\Downloads\app\app\src\main\AndroidManifest.xml:72:13-48
+105            android:exported="false"
+105-->C:\Users\kasiv\Downloads\app\app\src\main\AndroidManifest.xml:73:13-37
+106            android:foregroundServiceType="dataSync" />
+106-->C:\Users\kasiv\Downloads\app\app\src\main\AndroidManifest.xml:74:13-53
+107        <service
+107-->C:\Users\kasiv\Downloads\app\app\src\main\AndroidManifest.xml:76:9-79:56
+108            android:name="com.localshare.app.TeamShareService"
+108-->C:\Users\kasiv\Downloads\app\app\src\main\AndroidManifest.xml:77:13-45
+109            android:exported="false"
+109-->C:\Users\kasiv\Downloads\app\app\src\main\AndroidManifest.xml:78:13-37
+110            android:foregroundServiceType="dataSync" />
+110-->C:\Users\kasiv\Downloads\app\app\src\main\AndroidManifest.xml:79:13-53
+111        <service
+111-->C:\Users\kasiv\Downloads\app\app\src\main\AndroidManifest.xml:81:9-84:56
+112            android:name="com.localshare.app.P2PReceiverService"
+112-->C:\Users\kasiv\Downloads\app\app\src\main\AndroidManifest.xml:82:13-47
+113            android:exported="false"
+113-->C:\Users\kasiv\Downloads\app\app\src\main\AndroidManifest.xml:83:13-37
+114            android:foregroundServiceType="dataSync" />
+114-->C:\Users\kasiv\Downloads\app\app\src\main\AndroidManifest.xml:84:13-53
+115
+116        <!-- FileProvider: required for Share button to expose received files to other apps -->
+117        <provider
+118            android:name="androidx.core.content.FileProvider"
+118-->C:\Users\kasiv\Downloads\app\app\src\main\AndroidManifest.xml:88:13-62
+119            android:authorities="com.localshare.app.fileprovider"
+119-->C:\Users\kasiv\Downloads\app\app\src\main\AndroidManifest.xml:89:13-64
+120            android:exported="false"
+120-->C:\Users\kasiv\Downloads\app\app\src\main\AndroidManifest.xml:90:13-37
+121            android:grantUriPermissions="true" >
+121-->C:\Users\kasiv\Downloads\app\app\src\main\AndroidManifest.xml:91:13-47
+122            <meta-data
+122-->C:\Users\kasiv\Downloads\app\app\src\main\AndroidManifest.xml:92:13-94:54
+123                android:name="android.support.FILE_PROVIDER_PATHS"
+123-->C:\Users\kasiv\Downloads\app\app\src\main\AndroidManifest.xml:93:17-67
+124                android:resource="@xml/file_paths" />
+124-->C:\Users\kasiv\Downloads\app\app\src\main\AndroidManifest.xml:94:17-51
+125        </provider>
+126        <provider
+126-->[androidx.emoji2:emoji2:1.2.0] C:\Users\kasiv\.gradle\caches\transforms-4\d4eccc3804f16f7194b7ec6b748fc4de\transformed\jetified-emoji2-1.2.0\AndroidManifest.xml:24:9-32:20
+127            android:name="androidx.startup.InitializationProvider"
+127-->[androidx.emoji2:emoji2:1.2.0] C:\Users\kasiv\.gradle\caches\transforms-4\d4eccc3804f16f7194b7ec6b748fc4de\transformed\jetified-emoji2-1.2.0\AndroidManifest.xml:25:13-67
+128            android:authorities="com.localshare.app.androidx-startup"
+128-->[androidx.emoji2:emoji2:1.2.0] C:\Users\kasiv\.gradle\caches\transforms-4\d4eccc3804f16f7194b7ec6b748fc4de\transformed\jetified-emoji2-1.2.0\AndroidManifest.xml:26:13-68
+129            android:exported="false" >
+129-->[androidx.emoji2:emoji2:1.2.0] C:\Users\kasiv\.gradle\caches\transforms-4\d4eccc3804f16f7194b7ec6b748fc4de\transformed\jetified-emoji2-1.2.0\AndroidManifest.xml:27:13-37
+130            <meta-data
+130-->[androidx.emoji2:emoji2:1.2.0] C:\Users\kasiv\.gradle\caches\transforms-4\d4eccc3804f16f7194b7ec6b748fc4de\transformed\jetified-emoji2-1.2.0\AndroidManifest.xml:29:13-31:52
+131                android:name="androidx.emoji2.text.EmojiCompatInitializer"
+131-->[androidx.emoji2:emoji2:1.2.0] C:\Users\kasiv\.gradle\caches\transforms-4\d4eccc3804f16f7194b7ec6b748fc4de\transformed\jetified-emoji2-1.2.0\AndroidManifest.xml:30:17-75
+132                android:value="androidx.startup" />
+132-->[androidx.emoji2:emoji2:1.2.0] C:\Users\kasiv\.gradle\caches\transforms-4\d4eccc3804f16f7194b7ec6b748fc4de\transformed\jetified-emoji2-1.2.0\AndroidManifest.xml:31:17-49
+133            <meta-data
+133-->[androidx.lifecycle:lifecycle-process:2.7.0] C:\Users\kasiv\.gradle\caches\transforms-4\4cec63ca5c0bf46af929833ec2ef0cab\transformed\jetified-lifecycle-process-2.7.0\AndroidManifest.xml:29:13-31:52
+134                android:name="androidx.lifecycle.ProcessLifecycleInitializer"
+134-->[androidx.lifecycle:lifecycle-process:2.7.0] C:\Users\kasiv\.gradle\caches\transforms-4\4cec63ca5c0bf46af929833ec2ef0cab\transformed\jetified-lifecycle-process-2.7.0\AndroidManifest.xml:30:17-78
+135                android:value="androidx.startup" />
+135-->[androidx.lifecycle:lifecycle-process:2.7.0] C:\Users\kasiv\.gradle\caches\transforms-4\4cec63ca5c0bf46af929833ec2ef0cab\transformed\jetified-lifecycle-process-2.7.0\AndroidManifest.xml:31:17-49
+136            <meta-data
+136-->[androidx.profileinstaller:profileinstaller:1.3.0] C:\Users\kasiv\.gradle\caches\transforms-4\8a03dae9c7b5b2fcc0db23ca6aca6299\transformed\jetified-profileinstaller-1.3.0\AndroidManifest.xml:29:13-31:52
+137                android:name="androidx.profileinstaller.ProfileInstallerInitializer"
+137-->[androidx.profileinstaller:profileinstaller:1.3.0] C:\Users\kasiv\.gradle\caches\transforms-4\8a03dae9c7b5b2fcc0db23ca6aca6299\transformed\jetified-profileinstaller-1.3.0\AndroidManifest.xml:30:17-85
+138                android:value="androidx.startup" />
+138-->[androidx.profileinstaller:profileinstaller:1.3.0] C:\Users\kasiv\.gradle\caches\transforms-4\8a03dae9c7b5b2fcc0db23ca6aca6299\transformed\jetified-profileinstaller-1.3.0\AndroidManifest.xml:31:17-49
+139        </provider>
+140
+141        <receiver
+141-->[androidx.profileinstaller:profileinstaller:1.3.0] C:\Users\kasiv\.gradle\caches\transforms-4\8a03dae9c7b5b2fcc0db23ca6aca6299\transformed\jetified-profileinstaller-1.3.0\AndroidManifest.xml:34:9-52:20
+142            android:name="androidx.profileinstaller.ProfileInstallReceiver"
+142-->[androidx.profileinstaller:profileinstaller:1.3.0] C:\Users\kasiv\.gradle\caches\transforms-4\8a03dae9c7b5b2fcc0db23ca6aca6299\transformed\jetified-profileinstaller-1.3.0\AndroidManifest.xml:35:13-76
+143            android:directBootAware="false"
+143-->[androidx.profileinstaller:profileinstaller:1.3.0] C:\Users\kasiv\.gradle\caches\transforms-4\8a03dae9c7b5b2fcc0db23ca6aca6299\transformed\jetified-profileinstaller-1.3.0\AndroidManifest.xml:36:13-44
+144            android:enabled="true"
+144-->[androidx.profileinstaller:profileinstaller:1.3.0] C:\Users\kasiv\.gradle\caches\transforms-4\8a03dae9c7b5b2fcc0db23ca6aca6299\transformed\jetified-profileinstaller-1.3.0\AndroidManifest.xml:37:13-35
+145            android:exported="true"
+145-->[androidx.profileinstaller:profileinstaller:1.3.0] C:\Users\kasiv\.gradle\caches\transforms-4\8a03dae9c7b5b2fcc0db23ca6aca6299\transformed\jetified-profileinstaller-1.3.0\AndroidManifest.xml:38:13-36
+146            android:permission="android.permission.DUMP" >
+146-->[androidx.profileinstaller:profileinstaller:1.3.0] C:\Users\kasiv\.gradle\caches\transforms-4\8a03dae9c7b5b2fcc0db23ca6aca6299\transformed\jetified-profileinstaller-1.3.0\AndroidManifest.xml:39:13-57
+147            <intent-filter>
+147-->[androidx.profileinstaller:profileinstaller:1.3.0] C:\Users\kasiv\.gradle\caches\transforms-4\8a03dae9c7b5b2fcc0db23ca6aca6299\transformed\jetified-profileinstaller-1.3.0\AndroidManifest.xml:40:13-42:29
+148                <action android:name="androidx.profileinstaller.action.INSTALL_PROFILE" />
+148-->[androidx.profileinstaller:profileinstaller:1.3.0] C:\Users\kasiv\.gradle\caches\transforms-4\8a03dae9c7b5b2fcc0db23ca6aca6299\transformed\jetified-profileinstaller-1.3.0\AndroidManifest.xml:41:17-91
+148-->[androidx.profileinstaller:profileinstaller:1.3.0] C:\Users\kasiv\.gradle\caches\transforms-4\8a03dae9c7b5b2fcc0db23ca6aca6299\transformed\jetified-profileinstaller-1.3.0\AndroidManifest.xml:41:25-88
+149            </intent-filter>
+150            <intent-filter>
+150-->[androidx.profileinstaller:profileinstaller:1.3.0] C:\Users\kasiv\.gradle\caches\transforms-4\8a03dae9c7b5b2fcc0db23ca6aca6299\transformed\jetified-profileinstaller-1.3.0\AndroidManifest.xml:43:13-45:29
+151                <action android:name="androidx.profileinstaller.action.SKIP_FILE" />
+151-->[androidx.profileinstaller:profileinstaller:1.3.0] C:\Users\kasiv\.gradle\caches\transforms-4\8a03dae9c7b5b2fcc0db23ca6aca6299\transformed\jetified-profileinstaller-1.3.0\AndroidManifest.xml:44:17-85
+151-->[androidx.profileinstaller:profileinstaller:1.3.0] C:\Users\kasiv\.gradle\caches\transforms-4\8a03dae9c7b5b2fcc0db23ca6aca6299\transformed\jetified-profileinstaller-1.3.0\AndroidManifest.xml:44:25-82
+152            </intent-filter>
+153            <intent-filter>
+153-->[androidx.profileinstaller:profileinstaller:1.3.0] C:\Users\kasiv\.gradle\caches\transforms-4\8a03dae9c7b5b2fcc0db23ca6aca6299\transformed\jetified-profileinstaller-1.3.0\AndroidManifest.xml:46:13-48:29
+154                <action android:name="androidx.profileinstaller.action.SAVE_PROFILE" />
+154-->[androidx.profileinstaller:profileinstaller:1.3.0] C:\Users\kasiv\.gradle\caches\transforms-4\8a03dae9c7b5b2fcc0db23ca6aca6299\transformed\jetified-profileinstaller-1.3.0\AndroidManifest.xml:47:17-88
+154-->[androidx.profileinstaller:profileinstaller:1.3.0] C:\Users\kasiv\.gradle\caches\transforms-4\8a03dae9c7b5b2fcc0db23ca6aca6299\transformed\jetified-profileinstaller-1.3.0\AndroidManifest.xml:47:25-85
+155            </intent-filter>
+156            <intent-filter>
+156-->[androidx.profileinstaller:profileinstaller:1.3.0] C:\Users\kasiv\.gradle\caches\transforms-4\8a03dae9c7b5b2fcc0db23ca6aca6299\transformed\jetified-profileinstaller-1.3.0\AndroidManifest.xml:49:13-51:29
+157                <action android:name="androidx.profileinstaller.action.BENCHMARK_OPERATION" />
+157-->[androidx.profileinstaller:profileinstaller:1.3.0] C:\Users\kasiv\.gradle\caches\transforms-4\8a03dae9c7b5b2fcc0db23ca6aca6299\transformed\jetified-profileinstaller-1.3.0\AndroidManifest.xml:50:17-95
+157-->[androidx.profileinstaller:profileinstaller:1.3.0] C:\Users\kasiv\.gradle\caches\transforms-4\8a03dae9c7b5b2fcc0db23ca6aca6299\transformed\jetified-profileinstaller-1.3.0\AndroidManifest.xml:50:25-92
+158            </intent-filter>
+159        </receiver>
+160
+161        <activity
+161-->[com.journeyapps:zxing-android-embedded:4.3.0] C:\Users\kasiv\.gradle\caches\transforms-4\edab22c82cdf6245fbd5f0c78413b608\transformed\jetified-zxing-android-embedded-4.3.0\AndroidManifest.xml:47:9-53:63
+162            android:name="com.journeyapps.barcodescanner.CaptureActivity"
+162-->[com.journeyapps:zxing-android-embedded:4.3.0] C:\Users\kasiv\.gradle\caches\transforms-4\edab22c82cdf6245fbd5f0c78413b608\transformed\jetified-zxing-android-embedded-4.3.0\AndroidManifest.xml:48:13-74
+163            android:clearTaskOnLaunch="true"
+163-->[com.journeyapps:zxing-android-embedded:4.3.0] C:\Users\kasiv\.gradle\caches\transforms-4\edab22c82cdf6245fbd5f0c78413b608\transformed\jetified-zxing-android-embedded-4.3.0\AndroidManifest.xml:49:13-45
+164            android:screenOrientation="sensorLandscape"
+164-->[com.journeyapps:zxing-android-embedded:4.3.0] C:\Users\kasiv\.gradle\caches\transforms-4\edab22c82cdf6245fbd5f0c78413b608\transformed\jetified-zxing-android-embedded-4.3.0\AndroidManifest.xml:50:13-56
+165            android:stateNotNeeded="true"
+165-->[com.journeyapps:zxing-android-embedded:4.3.0] C:\Users\kasiv\.gradle\caches\transforms-4\edab22c82cdf6245fbd5f0c78413b608\transformed\jetified-zxing-android-embedded-4.3.0\AndroidManifest.xml:51:13-42
+166            android:theme="@style/zxing_CaptureTheme"
+166-->[com.journeyapps:zxing-android-embedded:4.3.0] C:\Users\kasiv\.gradle\caches\transforms-4\edab22c82cdf6245fbd5f0c78413b608\transformed\jetified-zxing-android-embedded-4.3.0\AndroidManifest.xml:52:13-54
+167            android:windowSoftInputMode="stateAlwaysHidden" />
+167-->[com.journeyapps:zxing-android-embedded:4.3.0] C:\Users\kasiv\.gradle\caches\transforms-4\edab22c82cdf6245fbd5f0c78413b608\transformed\jetified-zxing-android-embedded-4.3.0\AndroidManifest.xml:53:13-60
+168    </application>
+169
+170</manifest>

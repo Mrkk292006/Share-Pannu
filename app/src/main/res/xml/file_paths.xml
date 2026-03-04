@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<paths xmlns:android="http://schemas.android.com/apk/res/android">
+    <!--
+        Covers Environment.getExternalStorageDirectory() + any sub-path.
+        Used by the Share button on API 26-28 where MediaStore content URIs
+        are not available and FileProvider is required to safely share file:// URIs.
+        path="." means the entire external storage root is accessible.
+    -->
+    <external-path
+        name="external_all"
+        path="." />
+    <!--
+        Internal cache path — required for FileProvider to serve TeamShare
+        temporary files via Intent.ACTION_VIEW (the "Open" button).
+    -->
+    <cache-path
+        name="team_share_cache"
+        path="TeamShare/" />
+</paths>

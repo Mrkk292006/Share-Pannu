@@ -1,0 +1,355 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Outer NestedScrollView lets the whole screen scroll while inner
+     RecyclerViews (Transfer Log, Received Files) handle their own
+     sub-scrolling via nestedScrollingEnabled="true". This eliminates
+     the nested-scroll conflict that would occur with a plain ScrollView. -->
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:background="@color/bg_dark">
+
+    <!-- Fixed header: header text + stop button always visible -->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:gravity="center_vertical"
+        android:paddingStart="20dp"
+        android:paddingEnd="20dp"
+        android:paddingTop="16dp"
+        android:paddingBottom="10dp"
+        android:background="@color/bg_dark">
+
+        <TextView
+            android:text="SHARING ACTIVE"
+            android:textColor="@color/accent_green"
+            android:textSize="18sp"
+            android:fontFamily="monospace"
+            android:letterSpacing="0.15"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"/>
+
+        <!-- Stop Server button fixed at top-right -->
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/btnStop"
+            android:layout_width="wrap_content"
+            android:layout_height="40dp"
+            android:text="■ STOP"
+            android:textSize="11sp"
+            android:fontFamily="monospace"
+            app:backgroundTint="@color/btn_stop"
+            android:textColor="@color/text_light"
+            app:cornerRadius="4dp"/>
+    </LinearLayout>
+
+    <!-- Scrollable content area -->
+    <androidx.core.widget.NestedScrollView
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        android:fillViewport="true">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:paddingStart="20dp"
+            android:paddingEnd="20dp"
+            android:paddingBottom="20dp">
+
+            <!-- ── URL + PIN Card ── -->
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:background="@drawable/card_bg"
+                android:padding="16dp"
+                android:layout_marginTop="4dp">
+
+                <TextView
+                    android:text="OPEN IN BROWSER"
+                    android:textColor="@color/text_dim"
+                    android:textSize="10sp"
+                    android:fontFamily="monospace"
+                    android:letterSpacing="0.2"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"/>
+
+                <TextView
+                    android:id="@+id/tvUrl"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="http://..."
+                    android:textColor="@color/accent_cyan"
+                    android:textSize="15sp"
+                    android:fontFamily="monospace"
+                    android:layout_marginTop="4dp"/>
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="1dp"
+                    android:background="@color/divider"
+                    android:layout_marginTop="10dp"
+                    android:layout_marginBottom="10dp"/>
+
+                <TextView
+                    android:text="AUTH PIN"
+                    android:textColor="@color/text_dim"
+                    android:textSize="10sp"
+                    android:fontFamily="monospace"
+                    android:letterSpacing="0.2"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"/>
+
+                <TextView
+                    android:id="@+id/tvPin"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="PIN: ——————"
+                    android:textColor="@color/accent_yellow"
+                    android:textSize="22sp"
+                    android:fontFamily="monospace"
+                    android:letterSpacing="0.3"
+                    android:layout_marginTop="4dp"/>
+            </LinearLayout>
+
+            <!-- ── QR Code Card ── -->
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:background="@drawable/card_bg"
+                android:padding="16dp"
+                android:layout_marginTop="10dp"
+                android:gravity="center">
+
+                <TextView
+                    android:text="SCAN QR CODE"
+                    android:textColor="@color/text_dim"
+                    android:textSize="10sp"
+                    android:fontFamily="monospace"
+                    android:letterSpacing="0.2"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"/>
+
+                <ImageView
+                    android:id="@+id/ivQr"
+                    android:layout_width="180dp"
+                    android:layout_height="180dp"
+                    android:layout_gravity="center"
+                    android:layout_marginTop="8dp"
+                    android:background="#FFFFFF"
+                    android:padding="6dp"
+                    android:contentDescription="QR Code"/>
+            </LinearLayout>
+
+            <!-- ── [01] SHARE FILES FROM PHONE ── -->
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:background="@drawable/card_bg"
+                android:padding="16dp"
+                android:layout_marginTop="10dp">
+
+                <TextView
+                    android:text="[ 01 ]  SHARE FILES FROM THIS PHONE"
+                    android:textColor="@color/accent_green"
+                    android:textSize="10sp"
+                    android:fontFamily="monospace"
+                    android:letterSpacing="0.15"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"/>
+
+                <TextView
+                    android:id="@+id/tvSharedCount"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="No files shared yet — tap ＋ Add Files"
+                    android:textColor="@color/text_dim"
+                    android:textSize="12sp"
+                    android:fontFamily="monospace"
+                    android:layout_marginTop="8dp"/>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:layout_marginTop="10dp">
+
+                    <com.google.android.material.button.MaterialButton
+                        android:id="@+id/btnShareFiles"
+                        android:layout_width="0dp"
+                        android:layout_height="44dp"
+                        android:layout_weight="1"
+                        android:text="＋  Add Files"
+                        android:textSize="12sp"
+                        android:fontFamily="monospace"
+                        app:backgroundTint="#003322"
+                        android:textColor="@color/accent_green"
+                        app:strokeColor="@color/accent_green"
+                        app:strokeWidth="1dp"
+                        app:cornerRadius="4dp"/>
+
+                    <com.google.android.material.button.MaterialButton
+                        android:id="@+id/btnClearFiles"
+                        android:layout_width="0dp"
+                        android:layout_height="44dp"
+                        android:layout_weight="1"
+                        android:text="✕  Clear All"
+                        android:textSize="12sp"
+                        android:fontFamily="monospace"
+                        app:backgroundTint="#1A0000"
+                        android:textColor="#FF6666"
+                        app:strokeColor="#FF4444"
+                        app:strokeWidth="1dp"
+                        app:cornerRadius="4dp"
+                        android:layout_marginStart="8dp"/>
+                </LinearLayout>
+            </LinearLayout>
+
+            <!-- Connection status -->
+            <TextView
+                android:id="@+id/tvWaiting"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="⬤  Waiting for device…"
+                android:textColor="@color/accent_green"
+                android:textSize="12sp"
+                android:layout_marginTop="10dp"/>
+
+            <!-- ── [05] FILES RECEIVED FROM LAPTOP ── NEW SECTION ── -->
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:background="@drawable/card_bg"
+                android:padding="16dp"
+                android:layout_marginTop="10dp">
+
+                <!-- Section header row -->
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:gravity="center_vertical"
+                    android:layout_marginBottom="4dp">
+
+                    <TextView
+                        android:text="[ 05 ]  FILES RECEIVED FROM LAPTOP"
+                        android:textColor="@color/accent_cyan"
+                        android:textSize="10sp"
+                        android:fontFamily="monospace"
+                        android:letterSpacing="0.15"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"/>
+
+                    <com.google.android.material.button.MaterialButton
+                        android:id="@+id/btnRefreshReceived"
+                        android:layout_width="wrap_content"
+                        android:layout_height="32dp"
+                        android:text="↻ Refresh"
+                        android:textSize="10sp"
+                        android:fontFamily="monospace"
+                        app:backgroundTint="#001A22"
+                        android:textColor="@color/accent_cyan"
+                        app:strokeColor="@color/accent_cyan"
+                        app:strokeWidth="1dp"
+                        app:cornerRadius="4dp"/>
+
+                    <com.google.android.material.button.MaterialButton
+                        android:id="@+id/btnClearReceived"
+                        android:layout_width="wrap_content"
+                        android:layout_height="32dp"
+                        android:text="✕ Clear"
+                        android:textSize="10sp"
+                        android:fontFamily="monospace"
+                        app:backgroundTint="#1A0000"
+                        android:textColor="#FF6666"
+                        app:strokeColor="#FF4444"
+                        app:strokeWidth="1dp"
+                        app:cornerRadius="4dp"
+                        android:layout_marginStart="6dp"/>
+                </LinearLayout>
+
+                <TextView
+                    android:id="@+id/tvReceivedCount"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="No files received yet — upload from browser"
+                    android:textColor="@color/text_dim"
+                    android:textSize="11sp"
+                    android:fontFamily="monospace"
+                    android:layout_marginBottom="6dp"/>
+
+                <!-- RecyclerView with fixed height — nested scrolling enabled
+                     so it can scroll independently inside NestedScrollView -->
+                <androidx.recyclerview.widget.RecyclerView
+                    android:id="@+id/rvReceivedFiles"
+                    android:layout_width="match_parent"
+                    android:layout_height="200dp"
+                    android:nestedScrollingEnabled="true"
+                    android:clipToPadding="false"/>
+            </LinearLayout>
+
+            <!-- ── TRANSFER LOG ── -->
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:background="@drawable/card_bg"
+                android:padding="12dp"
+                android:layout_marginTop="10dp">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:gravity="center_vertical"
+                    android:layout_marginBottom="6dp">
+
+                    <TextView
+                        android:text="TRANSFER LOG"
+                        android:textColor="@color/text_dim"
+                        android:textSize="10sp"
+                        android:fontFamily="monospace"
+                        android:letterSpacing="0.2"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"/>
+
+                    <com.google.android.material.button.MaterialButton
+                        android:id="@+id/btnClearLog"
+                        android:layout_width="wrap_content"
+                        android:layout_height="32dp"
+                        android:text="✕ Clear"
+                        android:textSize="10sp"
+                        android:fontFamily="monospace"
+                        app:backgroundTint="#1A0000"
+                        android:textColor="#FF6666"
+                        app:strokeColor="#FF4444"
+                        app:strokeWidth="1dp"
+                        app:cornerRadius="4dp"
+                        android:layout_marginEnd="2dp"/>
+                </LinearLayout>
+
+                <!-- Fixed 240dp height, nestedScrollingEnabled for independent scroll -->
+                <androidx.recyclerview.widget.RecyclerView
+                    android:id="@+id/rvLog"
+                    android:layout_width="match_parent"
+                    android:layout_height="240dp"
+                    android:nestedScrollingEnabled="true"
+                    android:clipToPadding="false"
+                    android:background="#0D0D0D"
+                    android:padding="8dp"/>
+            </LinearLayout>
+
+        </LinearLayout>
+    </androidx.core.widget.NestedScrollView>
+
+</LinearLayout>
